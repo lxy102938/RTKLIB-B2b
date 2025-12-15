@@ -86,12 +86,15 @@ static gtime_t invalidtm[MAXINVALIDTM]={{0}};/* invalid time marks */
 static rtcm_t rtcm;             /* rtcm control struct */
 static FILE *fp_rtcm=NULL;      /* rtcm data file pointer */
 
-static char B2b_file[1024]=""; /* B2b data file */
+static char B2b_files[MAXINFILE][1024]; /* B2b data files array */
+static int n_B2b_files = 0;     /* number of B2b files */
+static int cur_B2b_idx = 0;     /* current B2b file index */
 static char B2b_path[1024]=""; /* B2b data path */
 // static B2b_t B2b;              /* B2b control struct */
 static raw_t B2braw;              /* raw control struct */
 
 static FILE *fp_B2b=NULL;      /* B2b data file pointer */
+static int processed_days = 0; /* counter for processed days */
 static FILE *fp_URA=NULL;      /* B2b URA data file pointer */
 
 /* show message and check break ----------------------------------------------*/
@@ -269,7 +272,8 @@ static void update_B2b_ssr(gtime_t time, int format)
     char B2btime_str[128] = {0};
     char t0_str[6][64];
     char satid[8];
-    int i;
+    int i, j;
+    int found = 0;
 
     if (format != STRFMT_SINO && format != STRFMT_UNICORE) {
         printf("Error Format: %d \n", format);
@@ -278,13 +282,32 @@ static void update_B2b_ssr(gtime_t time, int format)
     time2str(time, obstime_str, 3);
     trace(22, "update_B2b_ssr  : obstime=%s \n", obstime_str);
     trace(22, "---------------------------------------------------------\n");
-    
-    /* open or swap rtcm file */
-    reppath(B2b_file, path, time, "", "");
-    
-    if (strcmp(path, B2b_path)) {
+
+    /* Try to find and open the appropriate B2b file from the array */
+    for (j = 0; j < n_B2b_files; j++) {
+        reppath(B2b_files[j], path, time, "", "");
+
+        /* Check if this is a different file path than current */
+        if (strcmp(path, B2b_path) != 0) {
+            /* Try to open the file */
+            FILE *fp_test = fopen(path, "rb");
+            if (fp_test) {
+                fclose(fp_test);
+                found = 1;
+                cur_B2b_idx = j;
+                break;
+            }
+        } else {
+            /* Already using this file */
+            found = 1;
+            break;
+        }
+    }
+
+    /* If we found a different file, switch to it */
+    if (found && strcmp(path, B2b_path) != 0) {
         strcpy(B2b_path, path);
-        
+
         if (fp_B2b) fclose(fp_B2b);
         fp_B2b = fopen(path, "rb");
         if (fp_B2b) {
@@ -298,6 +321,7 @@ static void update_B2b_ssr(gtime_t time, int format)
             if (B2braw.num_PPPB2BINF04 != 0) trace(22, "Message 4(%d) Detected at %s GeoPRN is %d \n", B2braw.num_PPPB2BINF04, B2btime_str, B2braw.geoprn);
 
             trace(2, "B2b file open: %s\n", path);
+            printf("Switched to B2b file: %s\n", path);
         }
     }
     if (!fp_B2b) return;
@@ -484,7 +508,7 @@ static int inputobs(obsd_t *obs, int solq, const prcopt_t *popt)
             update_rtcm_ssr(obs[0].time);
         }
 
-        if (*B2b_file) {
+        if (n_B2b_files > 0) {
             // int format = STRFMT_SINAN;
             // strcpy(rtcm_file, "../../../../GNSS_DataSet/20241002APMALIC/sinan/Cor_202410020000.log");
             format = popt->B2b_format;
@@ -894,17 +918,26 @@ static void readpreceph(const char **infile, int n, const prcopt_t *prcopt,
         }
     }
 
-    /* set B2b file and initialize B2b struct */
-    B2b_file[0]=B2b_path[0]='\0'; fp_B2b=NULL;
+    /* set B2b files and initialize B2b struct */
+    n_B2b_files = 0;
+    cur_B2b_idx = 0;
+    B2b_path[0]='\0';
+    fp_B2b=NULL;
 
-    for (i=0;i<n;i++) {
+    /* Store all B2b files found in input */
+    for (i=0;i<n && n_B2b_files < MAXINFILE;i++) {
         if ((ext=strrchr(infile[i],'.'))&&
             (!strcmp(ext,".b2b")||!strcmp(ext,".B2b"))) {
-            strcpy(B2b_file,infile[i]);
-            // init_B2b(&B2b);
-            init_raw(&B2braw,prcopt->B2b_format);
-            break;
+            strcpy(B2b_files[n_B2b_files],infile[i]);
+            n_B2b_files++;
+            printf("B2b file %d: %s\n", n_B2b_files, infile[i]);
         }
+    }
+
+    /* Initialize B2b raw struct if we have at least one B2b file */
+    if (n_B2b_files > 0) {
+        init_raw(&B2braw,prcopt->B2b_format);
+        printf("Total B2b files found: %d\n", n_B2b_files);
     }
 }
 /* free prec ephemeris and sbas data -----------------------------------------*/
@@ -1683,6 +1716,12 @@ extern int postpos(gtime_t ts, gtime_t te, double ti, double tu,
             stat=execses_b(tts,tte,ti,popt,sopt,fopt,flag,(const char **)ifile,index,nf,(const char *)ofile,
                            rov,base);
 
+            /* Increment processed days counter if processing was successful */
+            if (stat==0) {
+                processed_days++;
+                printf("Day %d processing completed\n", processed_days);
+            }
+
             if (stat==1) break;
         }
         for (i=0;i<n&&i<MAXINFILE;i++) free(ifile[i]);
@@ -1702,6 +1741,12 @@ extern int postpos(gtime_t ts, gtime_t te, double ti, double tu,
         stat=execses_b(ts,te,ti,popt,sopt,fopt,1,(const char **)ifile,index,n,ofile,rov,
                        base);
 
+        /* Increment processed days counter if processing was successful */
+        if (stat==0) {
+            processed_days++;
+            printf("Day %d processing completed\n", processed_days);
+        }
+
         for (i=0;i<n&&i<MAXINFILE;i++) free(ifile[i]);
     }
     else {
@@ -1710,9 +1755,29 @@ extern int postpos(gtime_t ts, gtime_t te, double ti, double tu,
         /* execute processing session */
         stat=execses_b(ts,te,ti,popt,sopt,fopt,1,infile,index,n,outfile,rov,
                        base);
+
+        /* Increment processed days counter if processing was successful */
+        if (stat==0) {
+            processed_days++;
+            printf("Day %d processing completed\n", processed_days);
+        }
     }
     /* close processing session */
     closeses(&navs,&pcvss,&pcvsr);
+
+    /* Output processing summary */
+    if (processed_days == 0) {
+        printf("\nNo complete day processed\n");
+    } else if (processed_days == 1) {
+        printf("\n1 day only\n");
+    } else if (processed_days == 2) {
+        printf("\n2 days complete\n");
+    } else {
+        printf("\n%d days complete\n", processed_days);
+    }
+
+    /* Reset processed days counter for next run */
+    processed_days = 0;
 
     return stat;
 }
