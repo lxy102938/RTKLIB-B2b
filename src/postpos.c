@@ -1750,16 +1750,71 @@ extern int postpos(gtime_t ts, gtime_t te, double ti, double tu,
         for (i=0;i<n&&i<MAXINFILE;i++) free(ifile[i]);
     }
     else {
+        /* When no time range specified, read obs files to get time range */
+        obs_t obs_temp={0};
+        nav_t nav_temp={0};
+        sta_t sta_temp[MAXRCV]={{0}};
+        gtime_t ts_auto={0}, te_auto={0};
+
         for (i=0;i<n;i++) index[i]=i;
 
-        /* execute processing session */
-        stat=execses_b(ts,te,ti,popt,sopt,fopt,1,infile,index,n,outfile,rov,
-                       base);
+        /* Read observation data to get time range */
+        trace(3,"Reading obs files to determine time range\n");
+        if (!readobsnav(ts,te,ti,infile,index,n,popt,&obs_temp,&nav_temp,sta_temp)) {
+            free(obs_temp.data);
+            closeses(&navs,&pcvss,&pcvsr);
+            return -1;
+        }
 
-        /* Increment processed days counter if processing was successful */
-        if (stat==0) {
-            processed_days++;
-            printf("Day %d processing completed\n", processed_days);
+        if (obs_temp.n > 0) {
+            /* Get time range from observations */
+            ts_auto = obs_temp.data[0].time;
+            te_auto = obs_temp.data[obs_temp.n-1].time;
+
+            free(obs_temp.data);
+
+            /* Calculate number of days and process each day */
+            double time_span = timediff(te_auto, ts_auto);
+            int num_days = (int)(time_span / 86400.0) + 1;
+
+            printf("Auto-detected time range: %s to %s (%d days)\n",
+                   time_str(ts_auto,0), time_str(te_auto,0), num_days);
+
+            /* Process each day separately */
+            for (i=0; i<num_days; i++) {
+                gtime_t day_start = timeadd(ts_auto, i*86400.0);
+                gtime_t day_end = timeadd(day_start, 86400.0-DTTOL);
+
+                /* Don't exceed the actual end time */
+                if (timediff(day_end, te_auto) > 0.0) {
+                    day_end = te_auto;
+                }
+
+                printf("\nProcessing day %d: %s to %s\n", i+1,
+                       time_str(day_start,0), time_str(day_end,0));
+
+                /* execute processing session for this day */
+                stat=execses_b(day_start,day_end,ti,popt,sopt,fopt,1,infile,index,n,outfile,rov,
+                               base);
+
+                /* Increment processed days counter if processing was successful */
+                if (stat==0) {
+                    processed_days++;
+                    printf("Day %d processing completed\n", processed_days);
+                } else {
+                    printf("Day %d processing failed\n", i+1);
+                    if (stat==1) break;  /* User abort */
+                }
+            }
+        } else {
+            /* No observations found, execute once anyway */
+            free(obs_temp.data);
+            stat=execses_b(ts,te,ti,popt,sopt,fopt,1,infile,index,n,outfile,rov,
+                           base);
+            if (stat==0) {
+                processed_days++;
+                printf("Day %d processing completed\n", processed_days);
+            }
         }
     }
     /* close processing session */
