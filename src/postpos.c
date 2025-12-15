@@ -1755,13 +1755,24 @@ extern int postpos(gtime_t ts, gtime_t te, double ti, double tu,
         nav_t nav_temp={0};
         sta_t sta_temp[MAXRCV]={{0}};
         gtime_t ts_auto={0}, te_auto={0};
+        char *ifile[MAXINFILE];
 
         for (i=0;i<n;i++) index[i]=i;
+
+        /* Allocate memory for file paths */
+        for (i=0;i<MAXINFILE;i++) {
+            if (!(ifile[i]=(char *)malloc(1024))) {
+                for (;i>=0;i--) free(ifile[i]);
+                closeses(&navs,&pcvss,&pcvsr);
+                return -1;
+            }
+        }
 
         /* Read observation data to get time range */
         trace(3,"Reading obs files to determine time range\n");
         if (!readobsnav(ts,te,ti,infile,index,n,popt,&obs_temp,&nav_temp,sta_temp)) {
             free(obs_temp.data);
+            for (i=0;i<MAXINFILE;i++) free(ifile[i]);
             closeses(&navs,&pcvss,&pcvsr);
             return -1;
         }
@@ -1784,6 +1795,9 @@ extern int postpos(gtime_t ts, gtime_t te, double ti, double tu,
             for (i=0; i<num_days; i++) {
                 gtime_t day_start = timeadd(ts_auto, i*86400.0);
                 gtime_t day_end = timeadd(day_start, 86400.0-DTTOL);
+                gtime_t ttte;
+                int j, k, nf;
+                char ofile[1024];
 
                 /* Don't exceed the actual end time */
                 if (timediff(day_end, te_auto) > 0.0) {
@@ -1793,8 +1807,38 @@ extern int postpos(gtime_t ts, gtime_t te, double ti, double tu,
                 printf("\nProcessing day %d: %s to %s\n", i+1,
                        time_str(day_start,0), time_str(day_end,0));
 
+                /* Prepare file paths for this day (similar to first branch logic) */
+                for (j=k=nf=0;j<n;j++) {
+                    const char *ext=strrchr(infile[j],'.');
+
+                    if (ext&&(!strcmp(ext,".rtcm3")||!strcmp(ext,".RTCM3"))) {
+                        strcpy(ifile[nf++],infile[j]);
+                    }
+                    else {
+                        /* include next day precise ephemeris or rinex brdc nav */
+                        ttte=day_end;
+                        if (ext&&(!strcmp(ext,".sp3")||!strcmp(ext,".SP3")||
+                                  !strcmp(ext,".eph")||!strcmp(ext,".EPH"))) {
+                            ttte=timeadd(ttte,3600.0);
+                        }
+                        else if (strstr(infile[j],"brdc")) {
+                            ttte=timeadd(ttte,7200.0);
+                        }
+                        nf+=reppaths(infile[j],ifile+nf,MAXINFILE-nf,day_start,ttte,"","");
+                    }
+                    while (k<nf) index[k++]=j;
+
+                    if (nf>=MAXINFILE) {
+                        trace(2,"too many input files. truncated\n");
+                        break;
+                    }
+                }
+
+                /* Prepare output file path for this day */
+                reppath(outfile,ofile,day_start,"","");
+
                 /* execute processing session for this day */
-                stat=execses_b(day_start,day_end,ti,popt,sopt,fopt,1,infile,index,n,outfile,rov,
+                stat=execses_b(day_start,day_end,ti,popt,sopt,fopt,1,(const char **)ifile,index,nf,ofile,rov,
                                base);
 
                 /* Increment processed days counter if processing was successful */
@@ -1816,6 +1860,9 @@ extern int postpos(gtime_t ts, gtime_t te, double ti, double tu,
                 printf("Day %d processing completed\n", processed_days);
             }
         }
+
+        /* Free allocated memory */
+        for (i=0;i<MAXINFILE;i++) free(ifile[i]);
     }
     /* close processing session */
     closeses(&navs,&pcvss,&pcvsr);
