@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
-  "../../../bin/postppp"
-  "../../../bin/postppp.pdb"
+  "/home/user/RTKLIB-B2b/bin/postppp"
+  "/home/user/RTKLIB-B2b/bin/postppp.pdb"
   "CMakeFiles/postppp.dir/postppp.c.o"
+  "CMakeFiles/postppp.dir/postppp.c.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

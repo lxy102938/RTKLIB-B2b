@@ -1,31 +1,22 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "C"
-  )
-# The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_C
-  "/home/book/GNSS/RTKLIB-B2b/app/rtdecoder/rtdecoder.c" "/home/book/GNSS/RTKLIB-B2b/build/app/rtdecoder/CMakeFiles/rtdecoder.dir/rtdecoder.c.o"
-  )
-set(CMAKE_C_COMPILER_ID "GNU")
-
-# Preprocessor definitions for this target.
-set(CMAKE_TARGET_DEFINITIONS_C
-  "ENACMP"
-  "ENAGAL"
-  "ENAGLO"
-  "ENAQZS"
-  "_DEBUG"
   )
 
-# The include file search paths:
-set(CMAKE_C_TARGET_INCLUDE_PATH
-  "../include"
-  "../app/rtdecoder"
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/user/RTKLIB-B2b/app/rtdecoder/rtdecoder.c" "app/rtdecoder/CMakeFiles/rtdecoder.dir/rtdecoder.c.o" "gcc" "app/rtdecoder/CMakeFiles/rtdecoder.dir/rtdecoder.c.o.d"
   )
 
-# Targets to which this target links.
-set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/book/GNSS/RTKLIB-B2b/build/src/CMakeFiles/B2bLib.dir/DependInfo.cmake"
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_FORWARD_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.

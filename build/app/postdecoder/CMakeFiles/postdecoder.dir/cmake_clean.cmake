@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
-  "../../../bin/postdecoder"
-  "../../../bin/postdecoder.pdb"
+  "/home/user/RTKLIB-B2b/bin/postdecoder"
+  "/home/user/RTKLIB-B2b/bin/postdecoder.pdb"
   "CMakeFiles/postdecoder.dir/postdecoder.c.o"
+  "CMakeFiles/postdecoder.dir/postdecoder.c.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

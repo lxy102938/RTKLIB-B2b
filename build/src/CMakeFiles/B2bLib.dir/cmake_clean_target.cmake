@@ -1,3 +1,3 @@
 file(REMOVE_RECURSE
-  "../../lib/libB2bLib.a"
+  "/home/user/RTKLIB-B2b/lib/libB2bLib.a"
 )
