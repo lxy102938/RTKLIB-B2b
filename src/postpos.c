@@ -297,11 +297,13 @@ static void update_B2b_ssr(gtime_t time, int format)
                 cur_B2b_idx = j;
                 break;
             }
-        } else {
-            /* Already using this file */
+        } else if (fp_B2b != NULL) {
+            /* Already using this file and it's still open */
             found = 1;
             break;
         }
+        /* If path matches but fp_B2b is NULL (file was closed due to EOF),
+           continue searching for other files */
     }
 
     /* If we found a different file, switch to it */
@@ -349,9 +351,23 @@ static void update_B2b_ssr(gtime_t time, int format)
     
     /* read B2b data until current time (assuming B2b data is directly available) */
     while (timediff(B2braw.time, time) < 1E-3) {
+        int ret;
         /* Note: Pay attention to this '<-1' condition; check later if the corresponding return value needs adjustment */
         // if (input_B2bf(&B2b, format, fp_B2b) < -1) break;
-        if (input_rawf(&B2braw, format, fp_B2b) < -1) break;
+        ret = input_rawf(&B2braw, format, fp_B2b);
+        if (ret < -1) {
+            /* EOF or error detected - close file and clear state */
+            if (ret == -2) {
+                trace(2, "B2b file EOF reached: %s\n", B2b_path);
+                printf("B2b file EOF reached: %s\n", B2b_path);
+            }
+            if (fp_B2b) {
+                fclose(fp_B2b);
+                fp_B2b = NULL;
+            }
+            B2b_path[0] = '\0';
+            break;
+        }
         time2str(B2braw.time, B2btime_str, 3);
 
         /* Liu@APM: This output may log a message where timediff(time, B2b.B2bssr[i].t0[0]) > -1E-3, so be cautious */
