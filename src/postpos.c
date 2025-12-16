@@ -311,6 +311,8 @@ static void update_B2b_ssr(gtime_t time, int format)
         if (fp_B2b) fclose(fp_B2b);
         fp_B2b = fopen(path, "rb");
         if (fp_B2b) {
+            /* Re-initialize B2braw for new file */
+            init_raw(&B2braw, format);
             B2braw.time = time;
             // input_B2bf(&B2b, format, fp_B2b);
             input_rawf(&B2braw, format, fp_B2b);
@@ -324,7 +326,26 @@ static void update_B2b_ssr(gtime_t time, int format)
             printf("Switched to B2b file: %s\n", path);
         }
     }
-    if (!fp_B2b) return;
+
+    /* If B2b file is not open (first call or after freepreceph), try to open it */
+    if (!fp_B2b && found) {
+        fp_B2b = fopen(path, "rb");
+        if (fp_B2b) {
+            strcpy(B2b_path, path);
+            /* Re-initialize B2braw for new file */
+            init_raw(&B2braw, format);
+            B2braw.time = time;
+            input_rawf(&B2braw, format, fp_B2b);
+
+            trace(2, "B2b file opened: %s\n", path);
+            printf("Opened B2b file: %s\n", path);
+        }
+    }
+
+    if (!fp_B2b) {
+        trace(3, "No B2b file available for time: %s\n", obstime_str);
+        return;
+    }
     
     /* read B2b data until current time (assuming B2b data is directly available) */
     while (timediff(B2braw.time, time) < 1E-3) {
@@ -960,6 +981,13 @@ static void freepreceph(nav_t *nav, sbs_t *sbs)
     if (fp_rtcm) fclose(fp_rtcm);
     free_rtcm(&rtcm);
     free_raw(&B2braw);
+
+    /* Close B2b file and reset state for next day processing */
+    if (fp_B2b) {
+        fclose(fp_B2b);
+        fp_B2b = NULL;
+    }
+    B2b_path[0] = '\0';  /* Clear B2b path to force re-open on next day */
 }
 /* read obs and nav data -----------------------------------------------------*/
 static int readobsnav(gtime_t ts, gtime_t te, double ti, const char **infile,
