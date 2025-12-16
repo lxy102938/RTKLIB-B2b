@@ -1812,27 +1812,58 @@ extern int postpos(gtime_t ts, gtime_t te, double ti, double tu,
 
             free(obs_temp.data);
 
-            /* Calculate number of days and process each day */
-            double time_span = timediff(te_auto, ts_auto);
-            int num_days = (int)(time_span / 86400.0) + 1;
+            /* Align to natural day boundaries (00:00:00 GPS time) */
+            int week_start, week_end;
+            double sow_start = time2gpst(ts_auto, &week_start);
+            double sow_end = time2gpst(te_auto, &week_end);
 
-            printf("Auto-detected time range: %s to %s (%d days)\n",
-                   time_str(ts_auto,0), time_str(te_auto,0), num_days);
+            /* Round down to start of day (00:00:00) */
+            int doy_start = (int)(sow_start / 86400.0);
+            int doy_end = (int)(sow_end / 86400.0);
 
-            /* Process each day separately */
+            /* Calculate day-aligned start and end times */
+            gtime_t day_aligned_start = gpst2time(week_start, doy_start * 86400.0);
+            gtime_t day_aligned_end = gpst2time(week_end, (doy_end + 1) * 86400.0 - DTTOL);
+
+            /* Calculate number of complete days */
+            int num_days = doy_end - doy_start + 1;
+            if (week_end != week_start) {
+                /* Handle week rollover */
+                num_days = (int)((timediff(day_aligned_end, day_aligned_start) + DTTOL) / 86400.0) + 1;
+            }
+
+            printf("Auto-detected obs range: %s to %s\n",
+                   time_str(ts_auto,0), time_str(te_auto,0));
+            printf("Day-aligned processing: %s to %s (%d natural days)\n",
+                   time_str(day_aligned_start,0), time_str(day_aligned_end,0), num_days);
+
+            /* Process each natural day separately */
             for (i=0; i<num_days; i++) {
-                gtime_t day_start = timeadd(ts_auto, i*86400.0);
-                gtime_t day_end = timeadd(day_start, 86400.0-DTTOL);
+                gtime_t day_start, day_end;
                 gtime_t ttte;
                 int j, k, nf;
+                int current_week;
+                double current_sow;
                 char ofile[1024];
 
-                /* Don't exceed the actual end time */
-                if (timediff(day_end, te_auto) > 0.0) {
-                    day_end = te_auto;
+                /* Calculate start of current natural day */
+                current_sow = (doy_start + i) * 86400.0;
+                current_week = week_start;
+
+                /* Handle week rollover */
+                while (current_sow >= 604800.0) {
+                    current_sow -= 604800.0;
+                    current_week++;
                 }
 
-                printf("\nProcessing day %d: %s to %s\n", i+1,
+                day_start = gpst2time(current_week, current_sow);
+                day_end = timeadd(day_start, 86400.0 - DTTOL);
+
+                /* Clip to actual observation range */
+                if (timediff(day_start, ts_auto) < 0.0) day_start = ts_auto;
+                if (timediff(day_end, te_auto) > 0.0) day_end = te_auto;
+
+                printf("\nProcessing natural day %d: %s to %s\n", i+1,
                        time_str(day_start,0), time_str(day_end,0));
 
                 /* Prepare file paths for this day (similar to first branch logic) */
