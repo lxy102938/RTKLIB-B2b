@@ -284,26 +284,26 @@ static void update_B2b_ssr(gtime_t time, int format)
     trace(22, "---------------------------------------------------------\n");
 
     /* Try to find and open the appropriate B2b file from the array */
-    for (j = 0; j < n_B2b_files; j++) {
-        reppath(B2b_files[j], path, time, "", "");
+    /* If current file is still open and valid, continue using it */
+    if (fp_B2b != NULL) {
+        /* Current file is still open, no need to search */
+        found = 1;
+    } else {
+        /* Need to open a new file - start from cur_B2b_idx (next file after EOF) */
+        for (j = cur_B2b_idx; j < n_B2b_files; j++) {
+            reppath(B2b_files[j], path, time, "", "");
 
-        /* Check if this is a different file path than current */
-        if (strcmp(path, B2b_path) != 0) {
-            /* Try to open the file */
+            /* Try to open this file */
             FILE *fp_test = fopen(path, "rb");
             if (fp_test) {
                 fclose(fp_test);
                 found = 1;
                 cur_B2b_idx = j;
+                trace(2, "Found B2b file [%d/%d]: %s\n", j+1, n_B2b_files, path);
+                printf("Found B2b file [%d/%d]: %s\n", j+1, n_B2b_files, path);
                 break;
             }
-        } else if (fp_B2b != NULL) {
-            /* Already using this file and it's still open */
-            found = 1;
-            break;
         }
-        /* If path matches but fp_B2b is NULL (file was closed due to EOF),
-           continue searching for other files */
     }
 
     /* If we found a different file, switch to it */
@@ -365,11 +365,11 @@ static void update_B2b_ssr(gtime_t time, int format)
             break;
         }
 
-        /* Check if B2braw.time is progressing */
+        /* Check if B2braw.time is progressing (relaxed check to avoid false positives) */
         if (timediff(B2braw.time, last_time) < 1E-6) {
-            if (++no_progress_count > 1000) {
-                trace(1, "Warning: B2b time not progressing after 1000 reads, breaking\n");
-                printf("Warning: B2b time not progressing, stopping\n");
+            if (++no_progress_count > 50000) {
+                trace(1, "Warning: B2b time not progressing after 50000 reads, breaking\n");
+                printf("Warning: B2b time not progressing after 50000 reads, stopping\n");
                 break;
             }
         } else {
@@ -383,8 +383,10 @@ static void update_B2b_ssr(gtime_t time, int format)
         if (ret <= 0) {
             /* EOF or error detected - close file and clear state */
             if (ret == -2) {
-                trace(2, "B2b file EOF reached: %s\n", B2b_path);
-                printf("B2b file EOF reached: %s\n", B2b_path);
+                trace(2, "B2b file EOF reached: %s, moving to next file\n", B2b_path);
+                printf("B2b file EOF reached: %s, moving to next file\n", B2b_path);
+                /* Move to next file index to avoid reopening this EOF file */
+                cur_B2b_idx++;
             } else if (ret == -1) {
                 trace(1, "B2b file read error: %s\n", B2b_path);
                 printf("B2b file read error: %s\n", B2b_path);
@@ -1394,7 +1396,11 @@ static int execses(gtime_t ts, gtime_t te, double ti, const prcopt_t *popt,
     }
     strcpy(B2btracefile,outfile);
     strcat(B2btracefile,".B2bssr");
-    B2b_tracelevel(22);
+    /* Use user-specified trace level instead of forcing level 22 to avoid massive log output */
+    /* B2b_tracelevel(22); */  /* Commented out - was causing performance issues */
+    if (sopt->trace > 0) {
+        B2b_tracelevel(sopt->trace);  /* Use the same trace level as main trace */
+    }
     B2b_traceopen(B2btracefile);
     /* read ionosphere data file */
     if (*fopt->iono&&(ext=strrchr(fopt->iono,'.'))) {
