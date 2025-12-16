@@ -350,16 +350,46 @@ static void update_B2b_ssr(gtime_t time, int format)
     }
     
     /* read B2b data until current time (assuming B2b data is directly available) */
+    int max_iterations = 100000;  /* safety limit to prevent infinite loop */
+    int iter_count = 0;
+    gtime_t last_time = B2braw.time;
+    int no_progress_count = 0;
+
     while (timediff(B2braw.time, time) < 1E-3) {
         int ret;
-        /* Note: Pay attention to this '<-1' condition; check later if the corresponding return value needs adjustment */
-        // if (input_B2bf(&B2b, format, fp_B2b) < -1) break;
+
+        /* Check iteration limit to prevent infinite loop */
+        if (++iter_count > max_iterations) {
+            trace(1, "Warning: B2b read loop exceeded %d iterations, breaking\n", max_iterations);
+            printf("Warning: B2b read loop exceeded max iterations, stopping\n");
+            break;
+        }
+
+        /* Check if B2braw.time is progressing */
+        if (timediff(B2braw.time, last_time) < 1E-6) {
+            if (++no_progress_count > 1000) {
+                trace(1, "Warning: B2b time not progressing after 1000 reads, breaking\n");
+                printf("Warning: B2b time not progressing, stopping\n");
+                break;
+            }
+        } else {
+            no_progress_count = 0;
+            last_time = B2braw.time;
+        }
+
         ret = input_rawf(&B2braw, format, fp_B2b);
-        if (ret < -1) {
+
+        /* Break on EOF, error, or no data (ret <= 0) */
+        if (ret <= 0) {
             /* EOF or error detected - close file and clear state */
             if (ret == -2) {
                 trace(2, "B2b file EOF reached: %s\n", B2b_path);
                 printf("B2b file EOF reached: %s\n", B2b_path);
+            } else if (ret == -1) {
+                trace(1, "B2b file read error: %s\n", B2b_path);
+                printf("B2b file read error: %s\n", B2b_path);
+            } else if (ret == 0) {
+                trace(3, "B2b no complete message read, breaking loop\n");
             }
             if (fp_B2b) {
                 fclose(fp_B2b);
