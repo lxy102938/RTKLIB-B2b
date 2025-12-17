@@ -322,9 +322,23 @@ static void update_B2b_ssr(gtime_t time, int format)
         strcpy(B2b_path, path);
         init_raw(&B2braw, format);
         B2braw.time = time;
-        input_rawf(&B2braw, format, fp_B2b);
 
-        trace(2, "Opened B2b file [%d/%d]: %s\n", cur_B2b_idx+1, n_B2b_files, path);
+        /* Read first data from file and check validity */
+        int first_ret = input_rawf(&B2braw, format, fp_B2b);
+        if (first_ret <= 0) {
+            /* File is empty or error on first read */
+            trace(1, "ERROR: B2b file empty or immediate error: %s (ret=%d)\n", path, first_ret);
+            printf("ERROR: B2b file empty or immediate error: %s (ret=%d)\n", path, first_ret);
+            printf("  Skipping this file, will try next file on next call\n");
+            fclose(fp_B2b);
+            fp_B2b = NULL;
+            B2b_path[0] = '\0';
+            cur_B2b_idx++;  /* Skip to next file */
+            return;
+        }
+
+        trace(2, "Opened B2b file [%d/%d]: %s, first B2b time=%s\n",
+              cur_B2b_idx+1, n_B2b_files, path, time_str(B2braw.time,3));
         printf("Opened B2b file [%d/%d]: %s\n", cur_B2b_idx+1, n_B2b_files, path);
     }
 
