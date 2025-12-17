@@ -334,26 +334,34 @@ static void update_B2b_ssr(gtime_t time, int format)
     }
     
     /* read B2b data until current time (assuming B2b data is directly available) */
-    int max_iterations = 100000;  /* safety limit to prevent infinite loop */
+    int max_iterations = 10000;  /* Reduced from 100000 to prevent long hangs */
     int iter_count = 0;
     gtime_t last_time = B2braw.time;
     int no_progress_count = 0;
+
+    trace(3, "Starting B2b read loop: B2braw.time=%s, obs_time=%s\n",
+          time_str(B2braw.time,3), obstime_str);
 
     while (timediff(B2braw.time, time) < 1E-3) {
         int ret;
 
         /* Check iteration limit to prevent infinite loop */
         if (++iter_count > max_iterations) {
-            trace(1, "Warning: B2b read loop exceeded %d iterations, breaking\n", max_iterations);
-            printf("Warning: B2b read loop exceeded max iterations, stopping\n");
+            trace(1, "ERROR: B2b read loop exceeded %d iterations at %s\n",
+                  max_iterations, obstime_str);
+            printf("ERROR: B2b read loop exceeded %d iterations, stopping\n", max_iterations);
+            printf("  B2braw.time=%s, obs_time=%s, file=%s\n",
+                   time_str(B2braw.time,3), obstime_str, B2b_path);
             break;
         }
 
-        /* Check if B2braw.time is progressing (relaxed check to avoid false positives) */
+        /* Check if B2braw.time is progressing */
         if (timediff(B2braw.time, last_time) < 1E-6) {
-            if (++no_progress_count > 50000) {
-                trace(1, "Warning: B2b time not progressing after 50000 reads, breaking\n");
-                printf("Warning: B2b time not progressing after 50000 reads, stopping\n");
+            if (++no_progress_count > 1000) {  /* Reduced from 50000 */
+                trace(1, "ERROR: B2b time not progressing after 1000 reads at %s\n", obstime_str);
+                printf("ERROR: B2b time not progressing after 1000 reads\n");
+                printf("  B2braw.time=%s stuck, obs_time=%s, file=%s\n",
+                       time_str(B2braw.time,3), obstime_str, B2b_path);
                 break;
             }
         } else {
@@ -367,10 +375,14 @@ static void update_B2b_ssr(gtime_t time, int format)
         if (ret <= 0) {
             /* EOF or error detected - close file and clear state */
             if (ret == -2) {
-                trace(2, "B2b file EOF reached: %s, moving to next file\n", B2b_path);
-                printf("B2b file EOF reached: %s, moving to next file\n", B2b_path);
+                trace(2, "B2b file EOF reached: %s (cur_B2b_idx=%d/%d)\n",
+                      B2b_path, cur_B2b_idx, n_B2b_files);
+                printf("B2b file EOF reached: %s\n", B2b_path);
                 /* Move to next file index to avoid reopening this EOF file */
                 cur_B2b_idx++;
+                trace(2, "Advanced to next B2b file index: %d/%d\n", cur_B2b_idx, n_B2b_files);
+                printf("  Advanced to next file index [%d/%d] for next day\n",
+                       cur_B2b_idx+1, n_B2b_files);
             } else if (ret == -1) {
                 trace(1, "B2b file read error: %s\n", B2b_path);
                 printf("B2b file read error: %s\n", B2b_path);
@@ -992,12 +1004,19 @@ static void readpreceph(const char **infile, int n, const prcopt_t *prcopt,
         /* Initialize B2b raw struct if we have at least one B2b file */
         if (n_B2b_files > 0) {
             init_raw(&B2braw,prcopt->B2b_format);
+            trace(2, "Initialized B2braw, Total B2b files found: %d\n", n_B2b_files);
             printf("Total B2b files found: %d\n", n_B2b_files);
         }
     } else {
         /* B2b files already initialized, keep existing cur_B2b_idx */
-        trace(2, "B2b files already initialized, cur_B2b_idx=%d\n", cur_B2b_idx);
-        printf("Continuing with B2b file [%d/%d]\n", cur_B2b_idx+1, n_B2b_files);
+        /* BUT: need to re-initialize B2braw after free_raw() in freepreceph() */
+        if (n_B2b_files > 0) {
+            init_raw(&B2braw,prcopt->B2b_format);
+            trace(2, "Re-initialized B2braw for new day processing\n");
+        }
+        trace(2, "B2b files already initialized, cur_B2b_idx=%d/%d\n", cur_B2b_idx, n_B2b_files);
+        printf("Day %d: Continuing with B2b file index [%d/%d] (next file after previous EOF)\n",
+               processed_days+1, cur_B2b_idx+1, n_B2b_files);
     }
 }
 /* free prec ephemeris and sbas data -----------------------------------------*/
