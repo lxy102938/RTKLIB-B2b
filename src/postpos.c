@@ -972,25 +972,32 @@ static void readpreceph(const char **infile, int n, const prcopt_t *prcopt,
     }
 
     /* set B2b files and initialize B2b struct */
-    n_B2b_files = 0;
-    cur_B2b_idx = 0;
-    B2b_path[0]='\0';
-    fp_B2b=NULL;
+    /* Only initialize B2b files on first call (when n_B2b_files is 0) */
+    /* This preserves cur_B2b_idx across multiple days of processing */
+    if (n_B2b_files == 0) {
+        cur_B2b_idx = 0;
+        B2b_path[0]='\0';
+        fp_B2b=NULL;
 
-    /* Store all B2b files found in input */
-    for (i=0;i<n && n_B2b_files < MAXINFILE;i++) {
-        if ((ext=strrchr(infile[i],'.'))&&
-            (!strcmp(ext,".b2b")||!strcmp(ext,".B2b"))) {
-            strcpy(B2b_files[n_B2b_files],infile[i]);
-            n_B2b_files++;
-            printf("B2b file %d: %s\n", n_B2b_files, infile[i]);
+        /* Store all B2b files found in input */
+        for (i=0;i<n && n_B2b_files < MAXINFILE;i++) {
+            if ((ext=strrchr(infile[i],'.'))&&
+                (!strcmp(ext,".b2b")||!strcmp(ext,".B2b"))) {
+                strcpy(B2b_files[n_B2b_files],infile[i]);
+                n_B2b_files++;
+                printf("B2b file %d: %s\n", n_B2b_files, infile[i]);
+            }
         }
-    }
 
-    /* Initialize B2b raw struct if we have at least one B2b file */
-    if (n_B2b_files > 0) {
-        init_raw(&B2braw,prcopt->B2b_format);
-        printf("Total B2b files found: %d\n", n_B2b_files);
+        /* Initialize B2b raw struct if we have at least one B2b file */
+        if (n_B2b_files > 0) {
+            init_raw(&B2braw,prcopt->B2b_format);
+            printf("Total B2b files found: %d\n", n_B2b_files);
+        }
+    } else {
+        /* B2b files already initialized, keep existing cur_B2b_idx */
+        trace(2, "B2b files already initialized, cur_B2b_idx=%d\n", cur_B2b_idx);
+        printf("Continuing with B2b file [%d/%d]\n", cur_B2b_idx+1, n_B2b_files);
     }
 }
 /* free prec ephemeris and sbas data -----------------------------------------*/
@@ -1249,6 +1256,16 @@ static void closeses(nav_t *nav, pcvs_t *pcvs, pcvs_t *pcvr)
     rtkclosestat();
     traceclose();
     B2b_traceclose();
+
+    /* Reset B2b global variables for next run */
+    n_B2b_files = 0;
+    cur_B2b_idx = 0;
+    B2b_path[0] = '\0';
+    if (fp_B2b) {
+        fclose(fp_B2b);
+        fp_B2b = NULL;
+    }
+    processed_days = 0;
 }
 /* set antenna parameters ----------------------------------------------------*/
 static void setpcv(gtime_t time, prcopt_t *popt, nav_t *nav, const pcvs_t *pcvs,
