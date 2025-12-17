@@ -283,13 +283,12 @@ static void update_B2b_ssr(gtime_t time, int format)
     trace(22, "update_B2b_ssr  : obstime=%s \n", obstime_str);
     trace(22, "---------------------------------------------------------\n");
 
-    /* Try to find and open the appropriate B2b file from the array */
-    /* If current file is still open and valid, continue using it */
+    /* If current file is still open, continue using it - nothing to do here */
     if (fp_B2b != NULL) {
-        /* Current file is still open, no need to search */
-        found = 1;
+        /* File already open, skip to data reading section */
     } else {
         /* Need to open a new file - start from cur_B2b_idx (next file after EOF) */
+        found = 0;
         for (j = cur_B2b_idx; j < n_B2b_files; j++) {
             reppath(B2b_files[j], path, time, "", "");
 
@@ -304,44 +303,29 @@ static void update_B2b_ssr(gtime_t time, int format)
                 break;
             }
         }
-    }
 
-    /* If we found a different file, switch to it */
-    if (found && strcmp(path, B2b_path) != 0) {
+        /* If no file found, return */
+        if (!found) {
+            trace(3, "No B2b file available for time: %s\n", obstime_str);
+            return;
+        }
+
+        /* Open the found file */
+        fp_B2b = fopen(path, "rb");
+        if (!fp_B2b) {
+            trace(1, "Failed to open B2b file: %s\n", path);
+            printf("Error: Failed to open B2b file: %s\n", path);
+            return;
+        }
+
+        /* Initialize for new file */
         strcpy(B2b_path, path);
+        init_raw(&B2braw, format);
+        B2braw.time = time;
+        input_rawf(&B2braw, format, fp_B2b);
 
-        if (fp_B2b) fclose(fp_B2b);
-        fp_B2b = fopen(path, "rb");
-        if (fp_B2b) {
-            /* Re-initialize B2braw for new file */
-            init_raw(&B2braw, format);
-            B2braw.time = time;
-            // input_B2bf(&B2b, format, fp_B2b);
-            input_rawf(&B2braw, format, fp_B2b);
-            /* This also performs an update, mainly to obtain the B2b start time for the next timediff calculation */
-            if (B2braw.num_PPPB2BINF01 != 0) trace(22, "Message 1(%d) Detected at %s GeoPRN is %d \n", B2braw.num_PPPB2BINF01, B2btime_str, B2braw.geoprn);
-            if (B2braw.num_PPPB2BINF02 != 0) trace(22, "Message 2(%d) Detected at %s GeoPRN is %d \n", B2braw.num_PPPB2BINF02, B2btime_str, B2braw.geoprn);
-            if (B2braw.num_PPPB2BINF03 != 0) trace(22, "Message 3(%d) Detected at %s GeoPRN is %d \n", B2braw.num_PPPB2BINF03, B2btime_str, B2braw.geoprn);
-            if (B2braw.num_PPPB2BINF04 != 0) trace(22, "Message 4(%d) Detected at %s GeoPRN is %d \n", B2braw.num_PPPB2BINF04, B2btime_str, B2braw.geoprn);
-
-            trace(2, "B2b file open: %s\n", path);
-            printf("Switched to B2b file: %s\n", path);
-        }
-    }
-
-    /* If B2b file is not open (first call or after freepreceph), try to open it */
-    if (!fp_B2b && found) {
-        fp_B2b = fopen(path, "rb");
-        if (fp_B2b) {
-            strcpy(B2b_path, path);
-            /* Re-initialize B2braw for new file */
-            init_raw(&B2braw, format);
-            B2braw.time = time;
-            input_rawf(&B2braw, format, fp_B2b);
-
-            trace(2, "B2b file opened: %s\n", path);
-            printf("Opened B2b file: %s\n", path);
-        }
+        trace(2, "Opened B2b file [%d/%d]: %s\n", cur_B2b_idx+1, n_B2b_files, path);
+        printf("Opened B2b file [%d/%d]: %s\n", cur_B2b_idx+1, n_B2b_files, path);
     }
 
     if (!fp_B2b) {
