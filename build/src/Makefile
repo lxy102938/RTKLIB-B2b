@@ -898,6 +898,30 @@ ppp_ar.c.s:
 	cd /home/user/RTKLIB-B2b/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/B2bLib.dir/build.make src/CMakeFiles/B2bLib.dir/ppp_ar.c.s
 .PHONY : ppp_ar.c.s
 
+ppp_ar_passbypass.o: ppp_ar_passbypass.c.o
+.PHONY : ppp_ar_passbypass.o
+
+# target to build an object file
+ppp_ar_passbypass.c.o:
+	cd /home/user/RTKLIB-B2b/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/B2bLib.dir/build.make src/CMakeFiles/B2bLib.dir/ppp_ar_passbypass.c.o
+.PHONY : ppp_ar_passbypass.c.o
+
+ppp_ar_passbypass.i: ppp_ar_passbypass.c.i
+.PHONY : ppp_ar_passbypass.i
+
+# target to preprocess a source file
+ppp_ar_passbypass.c.i:
+	cd /home/user/RTKLIB-B2b/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/B2bLib.dir/build.make src/CMakeFiles/B2bLib.dir/ppp_ar_passbypass.c.i
+.PHONY : ppp_ar_passbypass.c.i
+
+ppp_ar_passbypass.s: ppp_ar_passbypass.c.s
+.PHONY : ppp_ar_passbypass.s
+
+# target to generate assembly for a file
+ppp_ar_passbypass.c.s:
+	cd /home/user/RTKLIB-B2b/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/B2bLib.dir/build.make src/CMakeFiles/B2bLib.dir/ppp_ar_passbypass.c.s
+.PHONY : ppp_ar_passbypass.c.s
+
 preceph.o: preceph.c.o
 .PHONY : preceph.o
 
@@ -1771,6 +1795,9 @@ help:
 	@echo "... ppp_ar.o"
 	@echo "... ppp_ar.i"
 	@echo "... ppp_ar.s"
+	@echo "... ppp_ar_passbypass.o"
+	@echo "... ppp_ar_passbypass.i"
+	@echo "... ppp_ar_passbypass.s"
 	@echo "... preceph.o"
 	@echo "... preceph.i"
 	@echo "... preceph.s"

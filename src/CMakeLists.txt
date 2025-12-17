@@ -15,6 +15,7 @@ set(B2bLIB_SOURCES
     postpos.c
     ppp.c
     ppp_ar.c
+    ppp_ar_passbypass.c
     preceph.c
     rcvraw.c
     rinex.c
