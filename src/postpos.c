@@ -325,8 +325,8 @@ static void update_B2b_ssr(gtime_t time, int format)
 
         /* Read first data from file and check validity */
         int first_ret = input_rawf(&B2braw, format, fp_B2b);
-        if (first_ret <= 0) {
-            /* File is empty or error on first read */
+        if (first_ret == -2 || first_ret == -1) {
+            /* File is EOF or has error on first read - skip this file */
             trace(1, "ERROR: B2b file empty or immediate error: %s (ret=%d)\n", path, first_ret);
             printf("ERROR: B2b file empty or immediate error: %s (ret=%d)\n", path, first_ret);
             printf("  Skipping this file, will try next file on next call\n");
@@ -336,6 +336,7 @@ static void update_B2b_ssr(gtime_t time, int format)
             cur_B2b_idx++;  /* Skip to next file */
             return;
         }
+        /* If first_ret == 0 (no complete message yet), continue - this is normal for binary format syncing */
 
         trace(2, "Opened B2b file [%d/%d]: %s, first B2b time=%s\n",
               cur_B2b_idx+1, n_B2b_files, path, time_str(B2braw.time,3));
@@ -385,29 +386,37 @@ static void update_B2b_ssr(gtime_t time, int format)
 
         ret = input_rawf(&B2braw, format, fp_B2b);
 
-        /* Break on EOF, error, or no data (ret <= 0) */
+        /* Handle EOF, error, or no data (ret <= 0) */
         if (ret <= 0) {
-            /* EOF or error detected - close file and clear state */
             if (ret == -2) {
+                /* EOF - close file and move to next file index */
                 trace(2, "B2b file EOF reached: %s (cur_B2b_idx=%d/%d)\n",
                       B2b_path, cur_B2b_idx, n_B2b_files);
                 printf("B2b file EOF reached: %s\n", B2b_path);
-                /* Move to next file index to avoid reopening this EOF file */
                 cur_B2b_idx++;
                 trace(2, "Advanced to next B2b file index: %d/%d\n", cur_B2b_idx, n_B2b_files);
                 printf("  Advanced to next file index [%d/%d] for next day\n",
                        cur_B2b_idx+1, n_B2b_files);
+                if (fp_B2b) {
+                    fclose(fp_B2b);
+                    fp_B2b = NULL;
+                }
+                B2b_path[0] = '\0';
             } else if (ret == -1) {
+                /* Error - close file and skip to next file */
                 trace(1, "B2b file read error: %s\n", B2b_path);
                 printf("B2b file read error: %s\n", B2b_path);
+                cur_B2b_idx++;  /* Skip problematic file */
+                if (fp_B2b) {
+                    fclose(fp_B2b);
+                    fp_B2b = NULL;
+                }
+                B2b_path[0] = '\0';
             } else if (ret == 0) {
-                trace(3, "B2b no complete message read, breaking loop\n");
+                /* No complete message yet - keep file open for next call */
+                trace(3, "B2b no complete message read, will continue next call\n");
+                /* Do NOT close file or increment index - continue from here next time */
             }
-            if (fp_B2b) {
-                fclose(fp_B2b);
-                fp_B2b = NULL;
-            }
-            B2b_path[0] = '\0';
             break;
         }
         time2str(B2braw.time, B2btime_str, 3);
