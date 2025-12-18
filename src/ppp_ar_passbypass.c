@@ -150,13 +150,24 @@ extern void print_arc_summary(void)
 {
     extern satamb_t satamb[];
     int i, j, total_arcs = 0;
+    int sats_with_both_days = 0;
     char satid[8];
 
     printf("\n========== Ambiguity Arc Summary ==========\n");
     for (i = 0; i < MAXSAT; i++) {
         if (satamb[i].n == 0) continue;
         satno2id(i + 1, satid);
-        printf("%s: %d arcs\n", satid, satamb[i].n);
+
+        /* check if has both days */
+        int has_day0 = 0, has_day1 = 0;
+        for (j = 0; j < satamb[i].n; j++) {
+            if (satamb[i].arc[j].day == 0 && satamb[i].arc[j].nobs >= 10) has_day0 = 1;
+            if (satamb[i].arc[j].day == 1 && satamb[i].arc[j].nobs >= 10) has_day1 = 1;
+        }
+        if (has_day0 && has_day1) sats_with_both_days++;
+
+        printf("%s: %d arcs [%s]\n", satid, satamb[i].n,
+               (has_day0 && has_day1) ? "day0+day1" : (has_day0 ? "day0 only" : "day1 only"));
 
         for (j = 0; j < satamb[i].n; j++) {
             printf("  Arc %d: day=%d, nobs=%d, N_IF=%.3f±%.3f, N_WL=%.3f±%.3f\n",
@@ -167,6 +178,7 @@ extern void print_arc_summary(void)
         total_arcs += satamb[i].n;
     }
     printf("Total arcs: %d\n", total_arcs);
+    printf("Satellites with both day0 and day1 (>=10 obs): %d\n", sats_with_both_days);
     printf("==========================================\n\n");
 }
 
@@ -288,26 +300,33 @@ extern int collect_ambiguities(const rtk_t *rtk, const obsd_t *obs, int n,
 static int compute_sd_wl_across_days(const satamb_t *satamb, int sat,
                                        double *SD_WL, double *var_SD)
 {
-    int arc_day1 = -1, arc_day2 = -1;
+    int arc_day0 = -1, arc_day1 = -1;
     int i;
+    int max_obs_day0 = 0, max_obs_day1 = 0;
 
-    /* find arcs for day1 and day2 */
+    /* find best arcs for day 0 and day 1 (arc with most observations) */
     for (i = 0; i < satamb[sat - 1].n; i++) {
-        if (satamb[sat - 1].arc[i].day == 0 && satamb[sat - 1].arc[i].nobs > 10) {
-            arc_day1 = i;
+        if (satamb[sat - 1].arc[i].day == 0 && satamb[sat - 1].arc[i].nobs >= 10) {
+            if (satamb[sat - 1].arc[i].nobs > max_obs_day0) {
+                max_obs_day0 = satamb[sat - 1].arc[i].nobs;
+                arc_day0 = i;
+            }
         }
-        if (satamb[sat - 1].arc[i].day == 1 && satamb[sat - 1].arc[i].nobs > 10) {
-            arc_day2 = i;
+        if (satamb[sat - 1].arc[i].day == 1 && satamb[sat - 1].arc[i].nobs >= 10) {
+            if (satamb[sat - 1].arc[i].nobs > max_obs_day1) {
+                max_obs_day1 = satamb[sat - 1].arc[i].nobs;
+                arc_day1 = i;
+            }
         }
     }
 
-    if (arc_day1 < 0 || arc_day2 < 0) {
+    if (arc_day0 < 0 || arc_day1 < 0) {
         return 0;  /* both days not available */
     }
 
-    /* compute SD: day2 - day1 (removes satellite bias) */
-    *SD_WL = satamb[sat - 1].arc[arc_day2].N_WL - satamb[sat - 1].arc[arc_day1].N_WL;
-    *var_SD = satamb[sat - 1].arc[arc_day1].var_WL + satamb[sat - 1].arc[arc_day2].var_WL;
+    /* compute SD: day1 - day0 (removes satellite bias) */
+    *SD_WL = satamb[sat - 1].arc[arc_day1].N_WL - satamb[sat - 1].arc[arc_day0].N_WL;
+    *var_SD = satamb[sat - 1].arc[arc_day0].var_WL + satamb[sat - 1].arc[arc_day1].var_WL;
 
     return 1;
 }

@@ -41,17 +41,39 @@ extern int ppp_ar_48h(const prcopt_t *popt, rtk_t *rtk, const obs_t *obs)
 
     /* Step 2: select reference satellite */
     if (popt->pbp_refsat == 0) {
-        /* auto-select: choose satellite with most arcs */
-        int max_arcs = 0;
+        /* auto-select: choose satellite with both day0 and day1 data and most total observations */
+        int max_obs = 0;
+        int has_day0, has_day1;
+
         for (int i = 0; i < MAXSAT; i++) {
-            if (satamb[i].n > max_arcs) {
-                max_arcs = satamb[i].n;
+            if (satamb[i].n == 0) continue;
+
+            /* check if this satellite has both day 0 and day 1 arcs with enough obs */
+            has_day0 = 0;
+            has_day1 = 0;
+            int total_obs = 0;
+
+            for (int j = 0; j < satamb[i].n; j++) {
+                if (satamb[i].arc[j].day == 0 && satamb[i].arc[j].nobs >= 10) {
+                    has_day0 = 1;
+                    total_obs += satamb[i].arc[j].nobs;
+                }
+                if (satamb[i].arc[j].day == 1 && satamb[i].arc[j].nobs >= 10) {
+                    has_day1 = 1;
+                    total_obs += satamb[i].arc[j].nobs;
+                }
+            }
+
+            /* only consider satellites with both days */
+            if (has_day0 && has_day1 && total_obs > max_obs) {
+                max_obs = total_obs;
                 refsat = i + 1;
             }
         }
+
         if (refsat == 0) {
-            trace(1, "ppp_ar_48h: no valid reference satellite\n");
-            printf("Error: No valid reference satellite found\n");
+            trace(1, "ppp_ar_48h: no satellite has both day 0 and day 1 data\n");
+            printf("Error: No satellite has both day 0 and day 1 data (need >=10 obs each day)\n");
             return 0;
         }
     } else {
