@@ -773,29 +773,50 @@ static void procpos(FILE *fp, FILE *fptm, const prcopt_t *popt, const solopt_t *
 
         /* Pass-by-Pass AR: collect ambiguities if enabled */
         if (popt->armode_pbp > 0 && rtk->sol.stat == SOLQ_PPP) {
-            static int day_transition_reported = 0;  /* track if we've reported day 1 start */
+            static int day_transition_reported = 0;
+            static int first_gps_doy = -1;  /* GPS day of year for first observation */
 
-            /* Initialize day1_start on first observation */
+            /* Get current GPS day of year */
+            double ep[6];
+            time2epoch(obs_ptr[0].time, ep);
+            int year = (int)ep[0];
+            int month = (int)ep[1];
+            int day_of_month = (int)ep[2];
+
+            /* Calculate day of year */
+            int days_in_month[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+            if ((year%4==0 && year%100!=0) || year%400==0) days_in_month[1] = 29;  /* leap year */
+            int current_gps_doy = day_of_month;
+            for (int m = 0; m < month - 1; m++) {
+                current_gps_doy += days_in_month[m];
+            }
+
+            /* Initialize on first observation */
             if (day1_start.time == 0) {
                 day1_start = obs_ptr[0].time;
+                first_gps_doy = current_gps_doy;
                 current_day = 0;
                 char time_str_buf[64];
                 time2str(day1_start, time_str_buf, 0);
-                trace(1, "AR: Day 0 started at %s\n", time_str_buf);
-                printf("AR: Day 0 started at %s\n", time_str_buf);
+                trace(1, "AR: Day 0 started at %s (GPS DOY %d)\n", time_str_buf, first_gps_doy);
+                printf("AR: Day 0 started at %s (GPS DOY %d)\n", time_str_buf, first_gps_doy);
             }
 
-            /* Determine current day (0 or 1) based on elapsed time */
-            double elapsed = timediff(obs_ptr[0].time, day1_start);
+            /* Calculate day number based on GPS DOY difference */
             int prev_day = current_day;
-            current_day = (int)(elapsed / 86400.0);  /* 0=day0, 1=day1 */
+            current_day = current_gps_doy - first_gps_doy;
+
+            /* Handle year rollover (DOY 365/366 -> 1) */
+            if (current_day < 0) {
+                current_day += ((year%4==0 && year%100!=0) || year%400==0) ? 366 : 365;
+            }
 
             /* Report day transition */
             if (current_day == 1 && prev_day == 0 && !day_transition_reported) {
                 char time_str_buf[64];
                 time2str(obs_ptr[0].time, time_str_buf, 0);
-                trace(1, "AR: Day 1 started at %s (elapsed=%.1f sec)\n", time_str_buf, elapsed);
-                printf("AR: Day 1 started at %s (elapsed=%.1f sec)\n", time_str_buf, elapsed);
+                trace(1, "AR: Day 1 started at %s (GPS DOY %d)\n", time_str_buf, current_gps_doy);
+                printf("AR: Day 1 started at %s (GPS DOY %d)\n", time_str_buf, current_gps_doy);
                 day_transition_reported = 1;
             }
 
@@ -803,14 +824,16 @@ static void procpos(FILE *fp, FILE *fptm, const prcopt_t *popt, const solopt_t *
             if (current_day <= 1) {
                 int n_collected = collect_ambiguities_epoch(rtk, obs_ptr, n, current_day);
                 if (n_collected > 0) {
-                    trace(3, "AR: Collected %d ambiguities for day %d (elapsed=%.1f)\n",
-                          n_collected, current_day, elapsed);
+                    trace(3, "AR: Collected %d ambiguities for day %d (DOY %d)\n",
+                          n_collected, current_day, current_gps_doy);
                 }
-            } else if (current_day == 2) {
+            } else if (current_day >= 2) {
                 static int day2_warning_shown = 0;
                 if (!day2_warning_shown) {
-                    trace(1, "AR: Day 2 detected, stopping collection (elapsed=%.1f sec)\n", elapsed);
-                    printf("AR: Day 2 detected, stopping ambiguity collection\n");
+                    trace(1, "AR: Day %d detected (DOY %d), stopping collection\n",
+                          current_day, current_gps_doy);
+                    printf("AR: Day %d detected (DOY %d), stopping ambiguity collection\n",
+                           current_day, current_gps_doy);
                     day2_warning_shown = 1;
                 }
             }
