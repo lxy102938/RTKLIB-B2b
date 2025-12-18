@@ -70,4 +70,12 @@ extern int fix_wl_nl_ambiguities(ddamb_t *ddamb, int n_dd);
 /* apply AR fixed solution with pseudo-observations */
 extern int apply_ar_fixed(rtk_t *rtk, const ddamb_t *ddamb, int n_dd);
 
+/* ========== Integration Functions ========== */
+
+/* AR processing wrapper for 48h PPP-B2b */
+extern int ppp_ar_48h(const prcopt_t *popt, rtk_t *rtk, const obs_t *obs);
+
+/* collect ambiguities during epoch processing */
+extern int collect_ambiguities_epoch(const rtk_t *rtk, const obsd_t *obs, int n, int day);
+
 #endif /* PPP_AR_PASSBYPASS_H */

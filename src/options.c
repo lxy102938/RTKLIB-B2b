@@ -595,6 +595,13 @@ extern void load_config(const char *filename, prcopt_t *popt, solopt_t *sopt, fi
     solopt_t _solopt = solopt_default;
     filopt_t _filopt = { "" };
 
+    /* Set Pass-by-Pass AR default values */
+    _prcopt.armode_pbp = 0;           /* off by default */
+    _prcopt.pbp_refsat = 0;           /* auto-select reference satellite */
+    _prcopt.pbp_thresar_wl = 0.15;    /* 0.15 cycles for WL fixing */
+    _prcopt.pbp_thresar_nl = 0.15;    /* 0.15 cycles for NL fixing */
+    _prcopt.pbp_sigma_pseudo = 0.0002; /* 0.0002 m (approximately 0.001 cycles) */
+
     char snrmask_[NFREQ][128] = {0};
     char exsats_[128];
     char str_navsys[8];
@@ -709,6 +716,13 @@ extern void load_config(const char *filename, prcopt_t *popt, solopt_t *sopt, fi
             else if (strcmp(key, "prcopt.armaxiter") == 0)     _prcopt.armaxiter = atoi(value);
             else if (strcmp(key, "prcopt.elmaskhold") == 0)    _prcopt.elmaskhold = atof(value)*D2R;
             else if (strcmp(key, "prcopt.aroutcnt") == 0)      _prcopt.maxout = atoi(value);
+
+            /*--- Pass-by-Pass AR option ---*/
+            else if (strcmp(key, "prcopt.armode_pbp") == 0)         _prcopt.armode_pbp = atoi(value);
+            else if (strcmp(key, "prcopt.pbp_refsat") == 0)         _prcopt.pbp_refsat = atoi(value);
+            else if (strcmp(key, "prcopt.pbp_thresar_wl") == 0)     _prcopt.pbp_thresar_wl = atof(value);
+            else if (strcmp(key, "prcopt.pbp_thresar_nl") == 0)     _prcopt.pbp_thresar_nl = atof(value);
+            else if (strcmp(key, "prcopt.pbp_sigma_pseudo") == 0)   _prcopt.pbp_sigma_pseudo = atof(value);
             /*------------------------------------------------------------------------------------------*/
 
             /*--- B2b option ---*/

@@ -725,6 +725,8 @@ static void procpos(FILE *fp, FILE *fptm, const prcopt_t *popt, const solopt_t *
     obsd_t *obs_ptr = (obsd_t *)malloc(sizeof(obsd_t)*MAXOBS*2); /* for rover and base */
     double rb[3]={0};
     int i,nobs,n,solstatic,num=0,pri[]={6,1,2,3,4,5,1,6};
+    static gtime_t day1_start = {0};  /* first day start time for AR */
+    static int current_day = -1;      /* current processing day for AR */
 
     trace(3,"procpos : mode=%d\n",mode); /* 0=single dir, 1=combined */
 
@@ -767,6 +769,28 @@ static void procpos(FILE *fp, FILE *fptm, const prcopt_t *popt, const solopt_t *
                 }
             }
             continue;
+        }
+
+        /* Pass-by-Pass AR: collect ambiguities if enabled */
+        if (popt->armode_pbp > 0 && rtk->sol.stat == SOLQ_PPP) {
+            /* Initialize day1_start on first observation */
+            if (day1_start.time == 0) {
+                day1_start = obs_ptr[0].time;
+                current_day = 0;
+                trace(2, "AR: Day 1 started at %s\n", time_str(day1_start, 0));
+            }
+
+            /* Determine current day (0 or 1) based on elapsed time */
+            double elapsed = timediff(obs_ptr[0].time, day1_start);
+            current_day = (int)(elapsed / 86400.0);  /* 0=day1, 1=day2 */
+
+            /* Collect ambiguities for current epoch (only first two days) */
+            if (current_day <= 1) {
+                int n_collected = collect_ambiguities_epoch(rtk, obs_ptr, n, current_day);
+                if (n_collected > 0) {
+                    trace(3, "AR: Collected %d ambiguities for day %d\n", n_collected, current_day);
+                }
+            }
         }
 
         if (mode==SOLMODE_SINGLE_DIR) {    /* forward or backward */
@@ -1550,6 +1574,15 @@ static int execses(gtime_t ts, gtime_t te, double ti, const prcopt_t *popt,
             if (fptm) {
                 rtkinit(rtk_ptr,&popt_);
                 procpos(fp,fptm,&popt_,sopt,rtk_ptr,SOLMODE_SINGLE_DIR);
+
+                /* Pass-by-Pass AR: process 48h ambiguity resolution if enabled */
+                if (popt_.armode_pbp > 0) {
+                    int n_fixed = ppp_ar_48h(&popt_, rtk_ptr, &obss);
+                    if (n_fixed > 0) {
+                        trace(1, "Pass-by-Pass AR: %d ambiguities fixed\n", n_fixed);
+                    }
+                }
+
                 rtkfree(rtk_ptr);
                 fclose(fptm);
             }
@@ -1564,6 +1597,15 @@ static int execses(gtime_t ts, gtime_t te, double ti, const prcopt_t *popt,
                 reverse=1; iobsu=iobsr=obss.n-1; isbs=sbss.n-1;
                 rtkinit(rtk_ptr,&popt_);
                 procpos(fp,fptm,&popt_,sopt,rtk_ptr,SOLMODE_SINGLE_DIR);
+
+                /* Pass-by-Pass AR: process 48h ambiguity resolution if enabled */
+                if (popt_.armode_pbp > 0) {
+                    int n_fixed = ppp_ar_48h(&popt_, rtk_ptr, &obss);
+                    if (n_fixed > 0) {
+                        trace(1, "Pass-by-Pass AR: %d ambiguities fixed\n", n_fixed);
+                    }
+                }
+
                 rtkfree(rtk_ptr);
                 fclose(fptm);
             }
@@ -1587,6 +1629,15 @@ static int execses(gtime_t ts, gtime_t te, double ti, const prcopt_t *popt,
                 rtkinit(rtk_ptr,&popt_);
             }
             procpos(NULL,NULL,&popt_,sopt,rtk_ptr,SOLMODE_COMBINED); /* backward */
+
+            /* Pass-by-Pass AR: process 48h ambiguity resolution if enabled */
+            if (popt_.armode_pbp > 0) {
+                int n_fixed = ppp_ar_48h(&popt_, rtk_ptr, &obss);
+                if (n_fixed > 0) {
+                    trace(1, "Pass-by-Pass AR: %d ambiguities fixed\n", n_fixed);
+                }
+            }
+
             rtkfree(rtk_ptr);
 
             /* combine forward/backward solutions */
