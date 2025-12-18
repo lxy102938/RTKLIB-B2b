@@ -151,9 +151,23 @@ extern void print_arc_summary(void)
     extern satamb_t satamb[];
     int i, j, total_arcs = 0;
     int sats_with_both_days = 0;
+    int arcs_day0 = 0, arcs_day1 = 0, arcs_other = 0;
     char satid[8];
 
     printf("\n========== Ambiguity Arc Summary ==========\n");
+
+    /* First pass: count arcs per day to diagnose day assignment */
+    for (i = 0; i < MAXSAT; i++) {
+        for (j = 0; j < satamb[i].n; j++) {
+            if (satamb[i].arc[j].day == 0) arcs_day0++;
+            else if (satamb[i].arc[j].day == 1) arcs_day1++;
+            else arcs_other++;
+        }
+    }
+
+    printf("Arc distribution: day0=%d, day1=%d, other=%d\n",
+           arcs_day0, arcs_day1, arcs_other);
+
     for (i = 0; i < MAXSAT; i++) {
         if (satamb[i].n == 0) continue;
         satno2id(i + 1, satid);

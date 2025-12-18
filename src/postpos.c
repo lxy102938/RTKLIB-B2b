@@ -773,22 +773,45 @@ static void procpos(FILE *fp, FILE *fptm, const prcopt_t *popt, const solopt_t *
 
         /* Pass-by-Pass AR: collect ambiguities if enabled */
         if (popt->armode_pbp > 0 && rtk->sol.stat == SOLQ_PPP) {
+            static int day_transition_reported = 0;  /* track if we've reported day 1 start */
+
             /* Initialize day1_start on first observation */
             if (day1_start.time == 0) {
                 day1_start = obs_ptr[0].time;
                 current_day = 0;
-                trace(2, "AR: Day 1 started at %s\n", time_str(day1_start, 0));
+                char time_str_buf[64];
+                time2str(day1_start, time_str_buf, 0);
+                trace(1, "AR: Day 0 started at %s\n", time_str_buf);
+                printf("AR: Day 0 started at %s\n", time_str_buf);
             }
 
             /* Determine current day (0 or 1) based on elapsed time */
             double elapsed = timediff(obs_ptr[0].time, day1_start);
-            current_day = (int)(elapsed / 86400.0);  /* 0=day1, 1=day2 */
+            int prev_day = current_day;
+            current_day = (int)(elapsed / 86400.0);  /* 0=day0, 1=day1 */
+
+            /* Report day transition */
+            if (current_day == 1 && prev_day == 0 && !day_transition_reported) {
+                char time_str_buf[64];
+                time2str(obs_ptr[0].time, time_str_buf, 0);
+                trace(1, "AR: Day 1 started at %s (elapsed=%.1f sec)\n", time_str_buf, elapsed);
+                printf("AR: Day 1 started at %s (elapsed=%.1f sec)\n", time_str_buf, elapsed);
+                day_transition_reported = 1;
+            }
 
             /* Collect ambiguities for current epoch (only first two days) */
             if (current_day <= 1) {
                 int n_collected = collect_ambiguities_epoch(rtk, obs_ptr, n, current_day);
                 if (n_collected > 0) {
-                    trace(3, "AR: Collected %d ambiguities for day %d\n", n_collected, current_day);
+                    trace(3, "AR: Collected %d ambiguities for day %d (elapsed=%.1f)\n",
+                          n_collected, current_day, elapsed);
+                }
+            } else if (current_day == 2) {
+                static int day2_warning_shown = 0;
+                if (!day2_warning_shown) {
+                    trace(1, "AR: Day 2 detected, stopping collection (elapsed=%.1f sec)\n", elapsed);
+                    printf("AR: Day 2 detected, stopping ambiguity collection\n");
+                    day2_warning_shown = 1;
                 }
             }
         }
