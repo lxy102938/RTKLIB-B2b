@@ -73,7 +73,21 @@ extern int ppp_ar_48h(const prcopt_t *popt, rtk_t *rtk, const obs_t *obs)
 
         if (refsat == 0) {
             trace(1, "ppp_ar_48h: no satellite has both day 0 and day 1 data\n");
-            printf("Error: No satellite has both day 0 and day 1 data (need >=10 obs each day)\n");
+            printf("\n========================================\n");
+            printf("ERROR: Pass-by-Pass AR 失败\n");
+            printf("========================================\n");
+            printf("原因: 没有卫星同时拥有day 0和day 1的数据\n");
+            printf("要求: 每天至少10个观测\n\n");
+            printf("可能的原因:\n");
+            printf("1. 数据只覆盖一天 - 检查观测文件和B2b文件时间范围\n");
+            printf("2. PPP解算质量差 - 检查解算状态是否为SOLQ_PPP\n");
+            printf("3. Day编号计算错误 - 查看上面的DEBUG输出\n");
+            printf("4. 数据中间有大间隙 - day编号可能跳过1直接到2\n\n");
+            printf("建议:\n");
+            printf("- 查看上面的'Arc distribution'行，确认day0和day1都有数据\n");
+            printf("- 查看DEBUG输出，确认current_day从0变为1\n");
+            printf("- 检查是否看到'AR: Day 1 started'消息\n");
+            printf("========================================\n\n");
             return 0;
         }
     } else {

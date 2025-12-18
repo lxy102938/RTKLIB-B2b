@@ -775,6 +775,7 @@ static void procpos(FILE *fp, FILE *fptm, const prcopt_t *popt, const solopt_t *
         if (popt->armode_pbp > 0 && rtk->sol.stat == SOLQ_PPP) {
             static int day_transition_reported = 0;
             static int first_gps_doy = -1;  /* GPS day of year for first observation */
+            static int epoch_count = 0;     /* count epochs for debugging */
 
             /* Get current GPS day of year */
             double ep[6];
@@ -782,6 +783,8 @@ static void procpos(FILE *fp, FILE *fptm, const prcopt_t *popt, const solopt_t *
             int year = (int)ep[0];
             int month = (int)ep[1];
             int day_of_month = (int)ep[2];
+            double hour = ep[3];
+            double minute = ep[4];
 
             /* Calculate day of year */
             int days_in_month[] = {31,28,31,30,31,30,31,31,30,31,30,31};
@@ -800,6 +803,8 @@ static void procpos(FILE *fp, FILE *fptm, const prcopt_t *popt, const solopt_t *
                 time2str(day1_start, time_str_buf, 0);
                 trace(1, "AR: Day 0 started at %s (GPS DOY %d)\n", time_str_buf, first_gps_doy);
                 printf("AR: Day 0 started at %s (GPS DOY %d)\n", time_str_buf, first_gps_doy);
+                printf("    Year=%d, Month=%d, DayOfMonth=%d, Time=%02.0f:%02.0f\n",
+                       year, month, day_of_month, hour, minute);
             }
 
             /* Calculate day number based on GPS DOY difference */
@@ -811,12 +816,22 @@ static void procpos(FILE *fp, FILE *fptm, const prcopt_t *popt, const solopt_t *
                 current_day += ((year%4==0 && year%100!=0) || year%400==0) ? 366 : 365;
             }
 
+            /* Debug: Print every 100th epoch's day info */
+            epoch_count++;
+            if (epoch_count % 100 == 0) {
+                printf("DEBUG [Epoch %d]: Year=%d Month=%d Day=%d Time=%02.0f:%02.0f DOY=%d first_DOY=%d current_day=%d\n",
+                       epoch_count, year, month, day_of_month, hour, minute,
+                       current_gps_doy, first_gps_doy, current_day);
+            }
+
             /* Report day transition */
             if (current_day == 1 && prev_day == 0 && !day_transition_reported) {
                 char time_str_buf[64];
                 time2str(obs_ptr[0].time, time_str_buf, 0);
                 trace(1, "AR: Day 1 started at %s (GPS DOY %d)\n", time_str_buf, current_gps_doy);
                 printf("AR: Day 1 started at %s (GPS DOY %d)\n", time_str_buf, current_gps_doy);
+                printf("    Year=%d, Month=%d, DayOfMonth=%d, Time=%02.0f:%02.0f\n",
+                       year, month, day_of_month, hour, minute);
                 day_transition_reported = 1;
             }
 
@@ -834,6 +849,7 @@ static void procpos(FILE *fp, FILE *fptm, const prcopt_t *popt, const solopt_t *
                           current_day, current_gps_doy);
                     printf("AR: Day %d detected (DOY %d), stopping ambiguity collection\n",
                            current_day, current_gps_doy);
+                    printf("    Total epochs processed: %d\n", epoch_count);
                     day2_warning_shown = 1;
                 }
             }
