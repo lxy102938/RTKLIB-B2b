@@ -898,6 +898,30 @@ ppp_ar.c.s:
 	cd /home/user/RTKLIB-B2b/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/B2bLib.dir/build.make src/CMakeFiles/B2bLib.dir/ppp_ar.c.s
 .PHONY : ppp_ar.c.s
 
+ppp_ar_integration.o: ppp_ar_integration.c.o
+.PHONY : ppp_ar_integration.o
+
+# target to build an object file
+ppp_ar_integration.c.o:
+	cd /home/user/RTKLIB-B2b/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/B2bLib.dir/build.make src/CMakeFiles/B2bLib.dir/ppp_ar_integration.c.o
+.PHONY : ppp_ar_integration.c.o
+
+ppp_ar_integration.i: ppp_ar_integration.c.i
+.PHONY : ppp_ar_integration.i
+
+# target to preprocess a source file
+ppp_ar_integration.c.i:
+	cd /home/user/RTKLIB-B2b/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/B2bLib.dir/build.make src/CMakeFiles/B2bLib.dir/ppp_ar_integration.c.i
+.PHONY : ppp_ar_integration.c.i
+
+ppp_ar_integration.s: ppp_ar_integration.c.s
+.PHONY : ppp_ar_integration.s
+
+# target to generate assembly for a file
+ppp_ar_integration.c.s:
+	cd /home/user/RTKLIB-B2b/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/B2bLib.dir/build.make src/CMakeFiles/B2bLib.dir/ppp_ar_integration.c.s
+.PHONY : ppp_ar_integration.c.s
+
 ppp_ar_passbypass.o: ppp_ar_passbypass.c.o
 .PHONY : ppp_ar_passbypass.o
 
@@ -1795,6 +1819,9 @@ help:
 	@echo "... ppp_ar.o"
 	@echo "... ppp_ar.i"
 	@echo "... ppp_ar.s"
+	@echo "... ppp_ar_integration.o"
+	@echo "... ppp_ar_integration.i"
+	@echo "... ppp_ar_integration.s"
 	@echo "... ppp_ar_passbypass.o"
 	@echo "... ppp_ar_passbypass.i"
 	@echo "... ppp_ar_passbypass.s"

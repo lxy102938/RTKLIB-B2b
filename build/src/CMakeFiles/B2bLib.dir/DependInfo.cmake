@@ -40,6 +40,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/user/RTKLIB-B2b/src/postpos.c" "src/CMakeFiles/B2bLib.dir/postpos.c.o" "gcc" "src/CMakeFiles/B2bLib.dir/postpos.c.o.d"
   "/home/user/RTKLIB-B2b/src/ppp.c" "src/CMakeFiles/B2bLib.dir/ppp.c.o" "gcc" "src/CMakeFiles/B2bLib.dir/ppp.c.o.d"
   "/home/user/RTKLIB-B2b/src/ppp_ar.c" "src/CMakeFiles/B2bLib.dir/ppp_ar.c.o" "gcc" "src/CMakeFiles/B2bLib.dir/ppp_ar.c.o.d"
+  "/home/user/RTKLIB-B2b/src/ppp_ar_integration.c" "src/CMakeFiles/B2bLib.dir/ppp_ar_integration.c.o" "gcc" "src/CMakeFiles/B2bLib.dir/ppp_ar_integration.c.o.d"
   "/home/user/RTKLIB-B2b/src/ppp_ar_passbypass.c" "src/CMakeFiles/B2bLib.dir/ppp_ar_passbypass.c.o" "gcc" "src/CMakeFiles/B2bLib.dir/ppp_ar_passbypass.c.o.d"
   "/home/user/RTKLIB-B2b/src/preceph.c" "src/CMakeFiles/B2bLib.dir/preceph.c.o" "gcc" "src/CMakeFiles/B2bLib.dir/preceph.c.o.d"
   "/home/user/RTKLIB-B2b/src/rcv/binex.c" "src/CMakeFiles/B2bLib.dir/rcv/binex.c.o" "gcc" "src/CMakeFiles/B2bLib.dir/rcv/binex.c.o.d"

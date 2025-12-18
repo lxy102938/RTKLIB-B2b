@@ -307,10 +307,24 @@ src/CMakeFiles/B2bLib.dir/ppp_ar_passbypass.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/B2bLib.dir/ppp_ar_passbypass.c.s"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/user/RTKLIB-B2b/src/ppp_ar_passbypass.c -o CMakeFiles/B2bLib.dir/ppp_ar_passbypass.c.s
 
+src/CMakeFiles/B2bLib.dir/ppp_ar_integration.c.o: src/CMakeFiles/B2bLib.dir/flags.make
+src/CMakeFiles/B2bLib.dir/ppp_ar_integration.c.o: /home/user/RTKLIB-B2b/src/ppp_ar_integration.c
+src/CMakeFiles/B2bLib.dir/ppp_ar_integration.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object src/CMakeFiles/B2bLib.dir/ppp_ar_integration.c.o"
+	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/ppp_ar_integration.c.o -MF CMakeFiles/B2bLib.dir/ppp_ar_integration.c.o.d -o CMakeFiles/B2bLib.dir/ppp_ar_integration.c.o -c /home/user/RTKLIB-B2b/src/ppp_ar_integration.c
+
+src/CMakeFiles/B2bLib.dir/ppp_ar_integration.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/B2bLib.dir/ppp_ar_integration.c.i"
+	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/user/RTKLIB-B2b/src/ppp_ar_integration.c > CMakeFiles/B2bLib.dir/ppp_ar_integration.c.i
+
+src/CMakeFiles/B2bLib.dir/ppp_ar_integration.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/B2bLib.dir/ppp_ar_integration.c.s"
+	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/user/RTKLIB-B2b/src/ppp_ar_integration.c -o CMakeFiles/B2bLib.dir/ppp_ar_integration.c.s
+
 src/CMakeFiles/B2bLib.dir/preceph.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/preceph.c.o: /home/user/RTKLIB-B2b/src/preceph.c
 src/CMakeFiles/B2bLib.dir/preceph.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object src/CMakeFiles/B2bLib.dir/preceph.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object src/CMakeFiles/B2bLib.dir/preceph.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/preceph.c.o -MF CMakeFiles/B2bLib.dir/preceph.c.o.d -o CMakeFiles/B2bLib.dir/preceph.c.o -c /home/user/RTKLIB-B2b/src/preceph.c
 
 src/CMakeFiles/B2bLib.dir/preceph.c.i: cmake_force
@@ -324,7 +338,7 @@ src/CMakeFiles/B2bLib.dir/preceph.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rcvraw.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rcvraw.c.o: /home/user/RTKLIB-B2b/src/rcvraw.c
 src/CMakeFiles/B2bLib.dir/rcvraw.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object src/CMakeFiles/B2bLib.dir/rcvraw.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object src/CMakeFiles/B2bLib.dir/rcvraw.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rcvraw.c.o -MF CMakeFiles/B2bLib.dir/rcvraw.c.o.d -o CMakeFiles/B2bLib.dir/rcvraw.c.o -c /home/user/RTKLIB-B2b/src/rcvraw.c
 
 src/CMakeFiles/B2bLib.dir/rcvraw.c.i: cmake_force
@@ -338,7 +352,7 @@ src/CMakeFiles/B2bLib.dir/rcvraw.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rinex.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rinex.c.o: /home/user/RTKLIB-B2b/src/rinex.c
 src/CMakeFiles/B2bLib.dir/rinex.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object src/CMakeFiles/B2bLib.dir/rinex.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object src/CMakeFiles/B2bLib.dir/rinex.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rinex.c.o -MF CMakeFiles/B2bLib.dir/rinex.c.o.d -o CMakeFiles/B2bLib.dir/rinex.c.o -c /home/user/RTKLIB-B2b/src/rinex.c
 
 src/CMakeFiles/B2bLib.dir/rinex.c.i: cmake_force
@@ -352,7 +366,7 @@ src/CMakeFiles/B2bLib.dir/rinex.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rtcm2.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rtcm2.c.o: /home/user/RTKLIB-B2b/src/rtcm2.c
 src/CMakeFiles/B2bLib.dir/rtcm2.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object src/CMakeFiles/B2bLib.dir/rtcm2.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object src/CMakeFiles/B2bLib.dir/rtcm2.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rtcm2.c.o -MF CMakeFiles/B2bLib.dir/rtcm2.c.o.d -o CMakeFiles/B2bLib.dir/rtcm2.c.o -c /home/user/RTKLIB-B2b/src/rtcm2.c
 
 src/CMakeFiles/B2bLib.dir/rtcm2.c.i: cmake_force
@@ -366,7 +380,7 @@ src/CMakeFiles/B2bLib.dir/rtcm2.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rtcm3.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rtcm3.c.o: /home/user/RTKLIB-B2b/src/rtcm3.c
 src/CMakeFiles/B2bLib.dir/rtcm3.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object src/CMakeFiles/B2bLib.dir/rtcm3.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building C object src/CMakeFiles/B2bLib.dir/rtcm3.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rtcm3.c.o -MF CMakeFiles/B2bLib.dir/rtcm3.c.o.d -o CMakeFiles/B2bLib.dir/rtcm3.c.o -c /home/user/RTKLIB-B2b/src/rtcm3.c
 
 src/CMakeFiles/B2bLib.dir/rtcm3.c.i: cmake_force
@@ -380,7 +394,7 @@ src/CMakeFiles/B2bLib.dir/rtcm3.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rtcm3e.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rtcm3e.c.o: /home/user/RTKLIB-B2b/src/rtcm3e.c
 src/CMakeFiles/B2bLib.dir/rtcm3e.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building C object src/CMakeFiles/B2bLib.dir/rtcm3e.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building C object src/CMakeFiles/B2bLib.dir/rtcm3e.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rtcm3e.c.o -MF CMakeFiles/B2bLib.dir/rtcm3e.c.o.d -o CMakeFiles/B2bLib.dir/rtcm3e.c.o -c /home/user/RTKLIB-B2b/src/rtcm3e.c
 
 src/CMakeFiles/B2bLib.dir/rtcm3e.c.i: cmake_force
@@ -394,7 +408,7 @@ src/CMakeFiles/B2bLib.dir/rtcm3e.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rtcm.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rtcm.c.o: /home/user/RTKLIB-B2b/src/rtcm.c
 src/CMakeFiles/B2bLib.dir/rtcm.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building C object src/CMakeFiles/B2bLib.dir/rtcm.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building C object src/CMakeFiles/B2bLib.dir/rtcm.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rtcm.c.o -MF CMakeFiles/B2bLib.dir/rtcm.c.o.d -o CMakeFiles/B2bLib.dir/rtcm.c.o -c /home/user/RTKLIB-B2b/src/rtcm.c
 
 src/CMakeFiles/B2bLib.dir/rtcm.c.i: cmake_force
@@ -408,7 +422,7 @@ src/CMakeFiles/B2bLib.dir/rtcm.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rtkcmn.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rtkcmn.c.o: /home/user/RTKLIB-B2b/src/rtkcmn.c
 src/CMakeFiles/B2bLib.dir/rtkcmn.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building C object src/CMakeFiles/B2bLib.dir/rtkcmn.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building C object src/CMakeFiles/B2bLib.dir/rtkcmn.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rtkcmn.c.o -MF CMakeFiles/B2bLib.dir/rtkcmn.c.o.d -o CMakeFiles/B2bLib.dir/rtkcmn.c.o -c /home/user/RTKLIB-B2b/src/rtkcmn.c
 
 src/CMakeFiles/B2bLib.dir/rtkcmn.c.i: cmake_force
@@ -422,7 +436,7 @@ src/CMakeFiles/B2bLib.dir/rtkcmn.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rtkpos.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rtkpos.c.o: /home/user/RTKLIB-B2b/src/rtkpos.c
 src/CMakeFiles/B2bLib.dir/rtkpos.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building C object src/CMakeFiles/B2bLib.dir/rtkpos.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building C object src/CMakeFiles/B2bLib.dir/rtkpos.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rtkpos.c.o -MF CMakeFiles/B2bLib.dir/rtkpos.c.o.d -o CMakeFiles/B2bLib.dir/rtkpos.c.o -c /home/user/RTKLIB-B2b/src/rtkpos.c
 
 src/CMakeFiles/B2bLib.dir/rtkpos.c.i: cmake_force
@@ -436,7 +450,7 @@ src/CMakeFiles/B2bLib.dir/rtkpos.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rtkrcv.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rtkrcv.c.o: /home/user/RTKLIB-B2b/src/rtkrcv.c
 src/CMakeFiles/B2bLib.dir/rtkrcv.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building C object src/CMakeFiles/B2bLib.dir/rtkrcv.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building C object src/CMakeFiles/B2bLib.dir/rtkrcv.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rtkrcv.c.o -MF CMakeFiles/B2bLib.dir/rtkrcv.c.o.d -o CMakeFiles/B2bLib.dir/rtkrcv.c.o -c /home/user/RTKLIB-B2b/src/rtkrcv.c
 
 src/CMakeFiles/B2bLib.dir/rtkrcv.c.i: cmake_force
@@ -450,7 +464,7 @@ src/CMakeFiles/B2bLib.dir/rtkrcv.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rtksvr.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rtksvr.c.o: /home/user/RTKLIB-B2b/src/rtksvr.c
 src/CMakeFiles/B2bLib.dir/rtksvr.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building C object src/CMakeFiles/B2bLib.dir/rtksvr.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building C object src/CMakeFiles/B2bLib.dir/rtksvr.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rtksvr.c.o -MF CMakeFiles/B2bLib.dir/rtksvr.c.o.d -o CMakeFiles/B2bLib.dir/rtksvr.c.o -c /home/user/RTKLIB-B2b/src/rtksvr.c
 
 src/CMakeFiles/B2bLib.dir/rtksvr.c.i: cmake_force
@@ -464,7 +478,7 @@ src/CMakeFiles/B2bLib.dir/rtksvr.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/sbas.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/sbas.c.o: /home/user/RTKLIB-B2b/src/sbas.c
 src/CMakeFiles/B2bLib.dir/sbas.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building C object src/CMakeFiles/B2bLib.dir/sbas.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building C object src/CMakeFiles/B2bLib.dir/sbas.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/sbas.c.o -MF CMakeFiles/B2bLib.dir/sbas.c.o.d -o CMakeFiles/B2bLib.dir/sbas.c.o -c /home/user/RTKLIB-B2b/src/sbas.c
 
 src/CMakeFiles/B2bLib.dir/sbas.c.i: cmake_force
@@ -478,7 +492,7 @@ src/CMakeFiles/B2bLib.dir/sbas.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/solution.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/solution.c.o: /home/user/RTKLIB-B2b/src/solution.c
 src/CMakeFiles/B2bLib.dir/solution.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building C object src/CMakeFiles/B2bLib.dir/solution.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building C object src/CMakeFiles/B2bLib.dir/solution.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/solution.c.o -MF CMakeFiles/B2bLib.dir/solution.c.o.d -o CMakeFiles/B2bLib.dir/solution.c.o -c /home/user/RTKLIB-B2b/src/solution.c
 
 src/CMakeFiles/B2bLib.dir/solution.c.i: cmake_force
@@ -492,7 +506,7 @@ src/CMakeFiles/B2bLib.dir/solution.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/stream.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/stream.c.o: /home/user/RTKLIB-B2b/src/stream.c
 src/CMakeFiles/B2bLib.dir/stream.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building C object src/CMakeFiles/B2bLib.dir/stream.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building C object src/CMakeFiles/B2bLib.dir/stream.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/stream.c.o -MF CMakeFiles/B2bLib.dir/stream.c.o.d -o CMakeFiles/B2bLib.dir/stream.c.o -c /home/user/RTKLIB-B2b/src/stream.c
 
 src/CMakeFiles/B2bLib.dir/stream.c.i: cmake_force
@@ -506,7 +520,7 @@ src/CMakeFiles/B2bLib.dir/stream.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/streamsvr.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/streamsvr.c.o: /home/user/RTKLIB-B2b/src/streamsvr.c
 src/CMakeFiles/B2bLib.dir/streamsvr.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building C object src/CMakeFiles/B2bLib.dir/streamsvr.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building C object src/CMakeFiles/B2bLib.dir/streamsvr.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/streamsvr.c.o -MF CMakeFiles/B2bLib.dir/streamsvr.c.o.d -o CMakeFiles/B2bLib.dir/streamsvr.c.o -c /home/user/RTKLIB-B2b/src/streamsvr.c
 
 src/CMakeFiles/B2bLib.dir/streamsvr.c.i: cmake_force
@@ -520,7 +534,7 @@ src/CMakeFiles/B2bLib.dir/streamsvr.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/tides.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/tides.c.o: /home/user/RTKLIB-B2b/src/tides.c
 src/CMakeFiles/B2bLib.dir/tides.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building C object src/CMakeFiles/B2bLib.dir/tides.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building C object src/CMakeFiles/B2bLib.dir/tides.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/tides.c.o -MF CMakeFiles/B2bLib.dir/tides.c.o.d -o CMakeFiles/B2bLib.dir/tides.c.o -c /home/user/RTKLIB-B2b/src/tides.c
 
 src/CMakeFiles/B2bLib.dir/tides.c.i: cmake_force
@@ -534,7 +548,7 @@ src/CMakeFiles/B2bLib.dir/tides.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/tle.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/tle.c.o: /home/user/RTKLIB-B2b/src/tle.c
 src/CMakeFiles/B2bLib.dir/tle.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building C object src/CMakeFiles/B2bLib.dir/tle.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building C object src/CMakeFiles/B2bLib.dir/tle.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/tle.c.o -MF CMakeFiles/B2bLib.dir/tle.c.o.d -o CMakeFiles/B2bLib.dir/tle.c.o -c /home/user/RTKLIB-B2b/src/tle.c
 
 src/CMakeFiles/B2bLib.dir/tle.c.i: cmake_force
@@ -548,7 +562,7 @@ src/CMakeFiles/B2bLib.dir/tle.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/trace.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/trace.c.o: /home/user/RTKLIB-B2b/src/trace.c
 src/CMakeFiles/B2bLib.dir/trace.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building C object src/CMakeFiles/B2bLib.dir/trace.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building C object src/CMakeFiles/B2bLib.dir/trace.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/trace.c.o -MF CMakeFiles/B2bLib.dir/trace.c.o.d -o CMakeFiles/B2bLib.dir/trace.c.o -c /home/user/RTKLIB-B2b/src/trace.c
 
 src/CMakeFiles/B2bLib.dir/trace.c.i: cmake_force
@@ -562,7 +576,7 @@ src/CMakeFiles/B2bLib.dir/trace.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/vt.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/vt.c.o: /home/user/RTKLIB-B2b/src/vt.c
 src/CMakeFiles/B2bLib.dir/vt.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building C object src/CMakeFiles/B2bLib.dir/vt.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building C object src/CMakeFiles/B2bLib.dir/vt.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/vt.c.o -MF CMakeFiles/B2bLib.dir/vt.c.o.d -o CMakeFiles/B2bLib.dir/vt.c.o -c /home/user/RTKLIB-B2b/src/vt.c
 
 src/CMakeFiles/B2bLib.dir/vt.c.i: cmake_force
@@ -576,7 +590,7 @@ src/CMakeFiles/B2bLib.dir/vt.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/B2b.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/B2b.c.o: /home/user/RTKLIB-B2b/src/B2b.c
 src/CMakeFiles/B2bLib.dir/B2b.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building C object src/CMakeFiles/B2bLib.dir/B2b.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building C object src/CMakeFiles/B2bLib.dir/B2b.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/B2b.c.o -MF CMakeFiles/B2bLib.dir/B2b.c.o.d -o CMakeFiles/B2bLib.dir/B2b.c.o -c /home/user/RTKLIB-B2b/src/B2b.c
 
 src/CMakeFiles/B2bLib.dir/B2b.c.i: cmake_force
@@ -590,7 +604,7 @@ src/CMakeFiles/B2bLib.dir/B2b.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rcv/binex.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rcv/binex.c.o: /home/user/RTKLIB-B2b/src/rcv/binex.c
 src/CMakeFiles/B2bLib.dir/rcv/binex.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building C object src/CMakeFiles/B2bLib.dir/rcv/binex.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building C object src/CMakeFiles/B2bLib.dir/rcv/binex.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rcv/binex.c.o -MF CMakeFiles/B2bLib.dir/rcv/binex.c.o.d -o CMakeFiles/B2bLib.dir/rcv/binex.c.o -c /home/user/RTKLIB-B2b/src/rcv/binex.c
 
 src/CMakeFiles/B2bLib.dir/rcv/binex.c.i: cmake_force
@@ -604,7 +618,7 @@ src/CMakeFiles/B2bLib.dir/rcv/binex.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rcv/crescent.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rcv/crescent.c.o: /home/user/RTKLIB-B2b/src/rcv/crescent.c
 src/CMakeFiles/B2bLib.dir/rcv/crescent.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building C object src/CMakeFiles/B2bLib.dir/rcv/crescent.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building C object src/CMakeFiles/B2bLib.dir/rcv/crescent.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rcv/crescent.c.o -MF CMakeFiles/B2bLib.dir/rcv/crescent.c.o.d -o CMakeFiles/B2bLib.dir/rcv/crescent.c.o -c /home/user/RTKLIB-B2b/src/rcv/crescent.c
 
 src/CMakeFiles/B2bLib.dir/rcv/crescent.c.i: cmake_force
@@ -618,7 +632,7 @@ src/CMakeFiles/B2bLib.dir/rcv/crescent.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rcv/javad.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rcv/javad.c.o: /home/user/RTKLIB-B2b/src/rcv/javad.c
 src/CMakeFiles/B2bLib.dir/rcv/javad.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building C object src/CMakeFiles/B2bLib.dir/rcv/javad.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building C object src/CMakeFiles/B2bLib.dir/rcv/javad.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rcv/javad.c.o -MF CMakeFiles/B2bLib.dir/rcv/javad.c.o.d -o CMakeFiles/B2bLib.dir/rcv/javad.c.o -c /home/user/RTKLIB-B2b/src/rcv/javad.c
 
 src/CMakeFiles/B2bLib.dir/rcv/javad.c.i: cmake_force
@@ -632,7 +646,7 @@ src/CMakeFiles/B2bLib.dir/rcv/javad.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rcv/novatel.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rcv/novatel.c.o: /home/user/RTKLIB-B2b/src/rcv/novatel.c
 src/CMakeFiles/B2bLib.dir/rcv/novatel.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building C object src/CMakeFiles/B2bLib.dir/rcv/novatel.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building C object src/CMakeFiles/B2bLib.dir/rcv/novatel.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rcv/novatel.c.o -MF CMakeFiles/B2bLib.dir/rcv/novatel.c.o.d -o CMakeFiles/B2bLib.dir/rcv/novatel.c.o -c /home/user/RTKLIB-B2b/src/rcv/novatel.c
 
 src/CMakeFiles/B2bLib.dir/rcv/novatel.c.i: cmake_force
@@ -646,7 +660,7 @@ src/CMakeFiles/B2bLib.dir/rcv/novatel.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rcv/nvs.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rcv/nvs.c.o: /home/user/RTKLIB-B2b/src/rcv/nvs.c
 src/CMakeFiles/B2bLib.dir/rcv/nvs.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building C object src/CMakeFiles/B2bLib.dir/rcv/nvs.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building C object src/CMakeFiles/B2bLib.dir/rcv/nvs.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rcv/nvs.c.o -MF CMakeFiles/B2bLib.dir/rcv/nvs.c.o.d -o CMakeFiles/B2bLib.dir/rcv/nvs.c.o -c /home/user/RTKLIB-B2b/src/rcv/nvs.c
 
 src/CMakeFiles/B2bLib.dir/rcv/nvs.c.i: cmake_force
@@ -660,7 +674,7 @@ src/CMakeFiles/B2bLib.dir/rcv/nvs.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rcv/rt17.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rcv/rt17.c.o: /home/user/RTKLIB-B2b/src/rcv/rt17.c
 src/CMakeFiles/B2bLib.dir/rcv/rt17.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building C object src/CMakeFiles/B2bLib.dir/rcv/rt17.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building C object src/CMakeFiles/B2bLib.dir/rcv/rt17.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rcv/rt17.c.o -MF CMakeFiles/B2bLib.dir/rcv/rt17.c.o.d -o CMakeFiles/B2bLib.dir/rcv/rt17.c.o -c /home/user/RTKLIB-B2b/src/rcv/rt17.c
 
 src/CMakeFiles/B2bLib.dir/rcv/rt17.c.i: cmake_force
@@ -674,7 +688,7 @@ src/CMakeFiles/B2bLib.dir/rcv/rt17.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rcv/septentrio.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rcv/septentrio.c.o: /home/user/RTKLIB-B2b/src/rcv/septentrio.c
 src/CMakeFiles/B2bLib.dir/rcv/septentrio.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building C object src/CMakeFiles/B2bLib.dir/rcv/septentrio.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building C object src/CMakeFiles/B2bLib.dir/rcv/septentrio.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rcv/septentrio.c.o -MF CMakeFiles/B2bLib.dir/rcv/septentrio.c.o.d -o CMakeFiles/B2bLib.dir/rcv/septentrio.c.o -c /home/user/RTKLIB-B2b/src/rcv/septentrio.c
 
 src/CMakeFiles/B2bLib.dir/rcv/septentrio.c.i: cmake_force
@@ -688,7 +702,7 @@ src/CMakeFiles/B2bLib.dir/rcv/septentrio.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rcv/skytraq.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rcv/skytraq.c.o: /home/user/RTKLIB-B2b/src/rcv/skytraq.c
 src/CMakeFiles/B2bLib.dir/rcv/skytraq.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building C object src/CMakeFiles/B2bLib.dir/rcv/skytraq.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building C object src/CMakeFiles/B2bLib.dir/rcv/skytraq.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rcv/skytraq.c.o -MF CMakeFiles/B2bLib.dir/rcv/skytraq.c.o.d -o CMakeFiles/B2bLib.dir/rcv/skytraq.c.o -c /home/user/RTKLIB-B2b/src/rcv/skytraq.c
 
 src/CMakeFiles/B2bLib.dir/rcv/skytraq.c.i: cmake_force
@@ -702,7 +716,7 @@ src/CMakeFiles/B2bLib.dir/rcv/skytraq.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rcv/swiftnav.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rcv/swiftnav.c.o: /home/user/RTKLIB-B2b/src/rcv/swiftnav.c
 src/CMakeFiles/B2bLib.dir/rcv/swiftnav.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building C object src/CMakeFiles/B2bLib.dir/rcv/swiftnav.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building C object src/CMakeFiles/B2bLib.dir/rcv/swiftnav.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rcv/swiftnav.c.o -MF CMakeFiles/B2bLib.dir/rcv/swiftnav.c.o.d -o CMakeFiles/B2bLib.dir/rcv/swiftnav.c.o -c /home/user/RTKLIB-B2b/src/rcv/swiftnav.c
 
 src/CMakeFiles/B2bLib.dir/rcv/swiftnav.c.i: cmake_force
@@ -716,7 +730,7 @@ src/CMakeFiles/B2bLib.dir/rcv/swiftnav.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rcv/tersus.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rcv/tersus.c.o: /home/user/RTKLIB-B2b/src/rcv/tersus.c
 src/CMakeFiles/B2bLib.dir/rcv/tersus.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building C object src/CMakeFiles/B2bLib.dir/rcv/tersus.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building C object src/CMakeFiles/B2bLib.dir/rcv/tersus.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rcv/tersus.c.o -MF CMakeFiles/B2bLib.dir/rcv/tersus.c.o.d -o CMakeFiles/B2bLib.dir/rcv/tersus.c.o -c /home/user/RTKLIB-B2b/src/rcv/tersus.c
 
 src/CMakeFiles/B2bLib.dir/rcv/tersus.c.i: cmake_force
@@ -730,7 +744,7 @@ src/CMakeFiles/B2bLib.dir/rcv/tersus.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rcv/ublox.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rcv/ublox.c.o: /home/user/RTKLIB-B2b/src/rcv/ublox.c
 src/CMakeFiles/B2bLib.dir/rcv/ublox.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building C object src/CMakeFiles/B2bLib.dir/rcv/ublox.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building C object src/CMakeFiles/B2bLib.dir/rcv/ublox.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rcv/ublox.c.o -MF CMakeFiles/B2bLib.dir/rcv/ublox.c.o.d -o CMakeFiles/B2bLib.dir/rcv/ublox.c.o -c /home/user/RTKLIB-B2b/src/rcv/ublox.c
 
 src/CMakeFiles/B2bLib.dir/rcv/ublox.c.i: cmake_force
@@ -744,7 +758,7 @@ src/CMakeFiles/B2bLib.dir/rcv/ublox.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rcv/unicore.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rcv/unicore.c.o: /home/user/RTKLIB-B2b/src/rcv/unicore.c
 src/CMakeFiles/B2bLib.dir/rcv/unicore.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building C object src/CMakeFiles/B2bLib.dir/rcv/unicore.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building C object src/CMakeFiles/B2bLib.dir/rcv/unicore.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rcv/unicore.c.o -MF CMakeFiles/B2bLib.dir/rcv/unicore.c.o.d -o CMakeFiles/B2bLib.dir/rcv/unicore.c.o -c /home/user/RTKLIB-B2b/src/rcv/unicore.c
 
 src/CMakeFiles/B2bLib.dir/rcv/unicore.c.i: cmake_force
@@ -758,7 +772,7 @@ src/CMakeFiles/B2bLib.dir/rcv/unicore.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/rcv/sinan.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/rcv/sinan.c.o: /home/user/RTKLIB-B2b/src/rcv/sinan.c
 src/CMakeFiles/B2bLib.dir/rcv/sinan.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building C object src/CMakeFiles/B2bLib.dir/rcv/sinan.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building C object src/CMakeFiles/B2bLib.dir/rcv/sinan.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/rcv/sinan.c.o -MF CMakeFiles/B2bLib.dir/rcv/sinan.c.o.d -o CMakeFiles/B2bLib.dir/rcv/sinan.c.o -c /home/user/RTKLIB-B2b/src/rcv/sinan.c
 
 src/CMakeFiles/B2bLib.dir/rcv/sinan.c.i: cmake_force
@@ -772,7 +786,7 @@ src/CMakeFiles/B2bLib.dir/rcv/sinan.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/f2c/cal2jd.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/f2c/cal2jd.c.o: /home/user/RTKLIB-B2b/src/f2c/cal2jd.c
 src/CMakeFiles/B2bLib.dir/f2c/cal2jd.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building C object src/CMakeFiles/B2bLib.dir/f2c/cal2jd.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building C object src/CMakeFiles/B2bLib.dir/f2c/cal2jd.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/f2c/cal2jd.c.o -MF CMakeFiles/B2bLib.dir/f2c/cal2jd.c.o.d -o CMakeFiles/B2bLib.dir/f2c/cal2jd.c.o -c /home/user/RTKLIB-B2b/src/f2c/cal2jd.c
 
 src/CMakeFiles/B2bLib.dir/f2c/cal2jd.c.i: cmake_force
@@ -786,7 +800,7 @@ src/CMakeFiles/B2bLib.dir/f2c/cal2jd.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/f2c/dat.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/f2c/dat.c.o: /home/user/RTKLIB-B2b/src/f2c/dat.c
 src/CMakeFiles/B2bLib.dir/f2c/dat.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building C object src/CMakeFiles/B2bLib.dir/f2c/dat.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building C object src/CMakeFiles/B2bLib.dir/f2c/dat.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/f2c/dat.c.o -MF CMakeFiles/B2bLib.dir/f2c/dat.c.o.d -o CMakeFiles/B2bLib.dir/f2c/dat.c.o -c /home/user/RTKLIB-B2b/src/f2c/dat.c
 
 src/CMakeFiles/B2bLib.dir/f2c/dat.c.i: cmake_force
@@ -800,7 +814,7 @@ src/CMakeFiles/B2bLib.dir/f2c/dat.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/f2c/dehanttideinel.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/f2c/dehanttideinel.c.o: /home/user/RTKLIB-B2b/src/f2c/dehanttideinel.c
 src/CMakeFiles/B2bLib.dir/f2c/dehanttideinel.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building C object src/CMakeFiles/B2bLib.dir/f2c/dehanttideinel.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building C object src/CMakeFiles/B2bLib.dir/f2c/dehanttideinel.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/f2c/dehanttideinel.c.o -MF CMakeFiles/B2bLib.dir/f2c/dehanttideinel.c.o.d -o CMakeFiles/B2bLib.dir/f2c/dehanttideinel.c.o -c /home/user/RTKLIB-B2b/src/f2c/dehanttideinel.c
 
 src/CMakeFiles/B2bLib.dir/f2c/dehanttideinel.c.i: cmake_force
@@ -814,7 +828,7 @@ src/CMakeFiles/B2bLib.dir/f2c/dehanttideinel.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/f2c/gmf.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/f2c/gmf.c.o: /home/user/RTKLIB-B2b/src/f2c/gmf.c
 src/CMakeFiles/B2bLib.dir/f2c/gmf.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building C object src/CMakeFiles/B2bLib.dir/f2c/gmf.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building C object src/CMakeFiles/B2bLib.dir/f2c/gmf.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/f2c/gmf.c.o -MF CMakeFiles/B2bLib.dir/f2c/gmf.c.o.d -o CMakeFiles/B2bLib.dir/f2c/gmf.c.o -c /home/user/RTKLIB-B2b/src/f2c/gmf.c
 
 src/CMakeFiles/B2bLib.dir/f2c/gmf.c.i: cmake_force
@@ -828,7 +842,7 @@ src/CMakeFiles/B2bLib.dir/f2c/gmf.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/f2c/gpt.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/f2c/gpt.c.o: /home/user/RTKLIB-B2b/src/f2c/gpt.c
 src/CMakeFiles/B2bLib.dir/f2c/gpt.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building C object src/CMakeFiles/B2bLib.dir/f2c/gpt.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building C object src/CMakeFiles/B2bLib.dir/f2c/gpt.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/f2c/gpt.c.o -MF CMakeFiles/B2bLib.dir/f2c/gpt.c.o.d -o CMakeFiles/B2bLib.dir/f2c/gpt.c.o -c /home/user/RTKLIB-B2b/src/f2c/gpt.c
 
 src/CMakeFiles/B2bLib.dir/f2c/gpt.c.i: cmake_force
@@ -842,7 +856,7 @@ src/CMakeFiles/B2bLib.dir/f2c/gpt.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/f2c/norm8.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/f2c/norm8.c.o: /home/user/RTKLIB-B2b/src/f2c/norm8.c
 src/CMakeFiles/B2bLib.dir/f2c/norm8.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building C object src/CMakeFiles/B2bLib.dir/f2c/norm8.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building C object src/CMakeFiles/B2bLib.dir/f2c/norm8.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/f2c/norm8.c.o -MF CMakeFiles/B2bLib.dir/f2c/norm8.c.o.d -o CMakeFiles/B2bLib.dir/f2c/norm8.c.o -c /home/user/RTKLIB-B2b/src/f2c/norm8.c
 
 src/CMakeFiles/B2bLib.dir/f2c/norm8.c.i: cmake_force
@@ -856,7 +870,7 @@ src/CMakeFiles/B2bLib.dir/f2c/norm8.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/f2c/sprod.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/f2c/sprod.c.o: /home/user/RTKLIB-B2b/src/f2c/sprod.c
 src/CMakeFiles/B2bLib.dir/f2c/sprod.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building C object src/CMakeFiles/B2bLib.dir/f2c/sprod.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building C object src/CMakeFiles/B2bLib.dir/f2c/sprod.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/f2c/sprod.c.o -MF CMakeFiles/B2bLib.dir/f2c/sprod.c.o.d -o CMakeFiles/B2bLib.dir/f2c/sprod.c.o -c /home/user/RTKLIB-B2b/src/f2c/sprod.c
 
 src/CMakeFiles/B2bLib.dir/f2c/sprod.c.i: cmake_force
@@ -870,7 +884,7 @@ src/CMakeFiles/B2bLib.dir/f2c/sprod.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/f2c/st1idiu.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/f2c/st1idiu.c.o: /home/user/RTKLIB-B2b/src/f2c/st1idiu.c
 src/CMakeFiles/B2bLib.dir/f2c/st1idiu.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building C object src/CMakeFiles/B2bLib.dir/f2c/st1idiu.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building C object src/CMakeFiles/B2bLib.dir/f2c/st1idiu.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/f2c/st1idiu.c.o -MF CMakeFiles/B2bLib.dir/f2c/st1idiu.c.o.d -o CMakeFiles/B2bLib.dir/f2c/st1idiu.c.o -c /home/user/RTKLIB-B2b/src/f2c/st1idiu.c
 
 src/CMakeFiles/B2bLib.dir/f2c/st1idiu.c.i: cmake_force
@@ -884,7 +898,7 @@ src/CMakeFiles/B2bLib.dir/f2c/st1idiu.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/f2c/st1isem.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/f2c/st1isem.c.o: /home/user/RTKLIB-B2b/src/f2c/st1isem.c
 src/CMakeFiles/B2bLib.dir/f2c/st1isem.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building C object src/CMakeFiles/B2bLib.dir/f2c/st1isem.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building C object src/CMakeFiles/B2bLib.dir/f2c/st1isem.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/f2c/st1isem.c.o -MF CMakeFiles/B2bLib.dir/f2c/st1isem.c.o.d -o CMakeFiles/B2bLib.dir/f2c/st1isem.c.o -c /home/user/RTKLIB-B2b/src/f2c/st1isem.c
 
 src/CMakeFiles/B2bLib.dir/f2c/st1isem.c.i: cmake_force
@@ -898,7 +912,7 @@ src/CMakeFiles/B2bLib.dir/f2c/st1isem.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/f2c/st1l1.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/f2c/st1l1.c.o: /home/user/RTKLIB-B2b/src/f2c/st1l1.c
 src/CMakeFiles/B2bLib.dir/f2c/st1l1.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building C object src/CMakeFiles/B2bLib.dir/f2c/st1l1.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building C object src/CMakeFiles/B2bLib.dir/f2c/st1l1.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/f2c/st1l1.c.o -MF CMakeFiles/B2bLib.dir/f2c/st1l1.c.o.d -o CMakeFiles/B2bLib.dir/f2c/st1l1.c.o -c /home/user/RTKLIB-B2b/src/f2c/st1l1.c
 
 src/CMakeFiles/B2bLib.dir/f2c/st1l1.c.i: cmake_force
@@ -912,7 +926,7 @@ src/CMakeFiles/B2bLib.dir/f2c/st1l1.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/f2c/step2diu.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/f2c/step2diu.c.o: /home/user/RTKLIB-B2b/src/f2c/step2diu.c
 src/CMakeFiles/B2bLib.dir/f2c/step2diu.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building C object src/CMakeFiles/B2bLib.dir/f2c/step2diu.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building C object src/CMakeFiles/B2bLib.dir/f2c/step2diu.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/f2c/step2diu.c.o -MF CMakeFiles/B2bLib.dir/f2c/step2diu.c.o.d -o CMakeFiles/B2bLib.dir/f2c/step2diu.c.o -c /home/user/RTKLIB-B2b/src/f2c/step2diu.c
 
 src/CMakeFiles/B2bLib.dir/f2c/step2diu.c.i: cmake_force
@@ -926,7 +940,7 @@ src/CMakeFiles/B2bLib.dir/f2c/step2diu.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/f2c/step2lon.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/f2c/step2lon.c.o: /home/user/RTKLIB-B2b/src/f2c/step2lon.c
 src/CMakeFiles/B2bLib.dir/f2c/step2lon.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building C object src/CMakeFiles/B2bLib.dir/f2c/step2lon.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building C object src/CMakeFiles/B2bLib.dir/f2c/step2lon.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/f2c/step2lon.c.o -MF CMakeFiles/B2bLib.dir/f2c/step2lon.c.o.d -o CMakeFiles/B2bLib.dir/f2c/step2lon.c.o -c /home/user/RTKLIB-B2b/src/f2c/step2lon.c
 
 src/CMakeFiles/B2bLib.dir/f2c/step2lon.c.i: cmake_force
@@ -940,7 +954,7 @@ src/CMakeFiles/B2bLib.dir/f2c/step2lon.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/f2c/vmf1.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/f2c/vmf1.c.o: /home/user/RTKLIB-B2b/src/f2c/vmf1.c
 src/CMakeFiles/B2bLib.dir/f2c/vmf1.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building C object src/CMakeFiles/B2bLib.dir/f2c/vmf1.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building C object src/CMakeFiles/B2bLib.dir/f2c/vmf1.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/f2c/vmf1.c.o -MF CMakeFiles/B2bLib.dir/f2c/vmf1.c.o.d -o CMakeFiles/B2bLib.dir/f2c/vmf1.c.o -c /home/user/RTKLIB-B2b/src/f2c/vmf1.c
 
 src/CMakeFiles/B2bLib.dir/f2c/vmf1.c.i: cmake_force
@@ -954,7 +968,7 @@ src/CMakeFiles/B2bLib.dir/f2c/vmf1.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/f2c/vmf1_ht.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/f2c/vmf1_ht.c.o: /home/user/RTKLIB-B2b/src/f2c/vmf1_ht.c
 src/CMakeFiles/B2bLib.dir/f2c/vmf1_ht.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building C object src/CMakeFiles/B2bLib.dir/f2c/vmf1_ht.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building C object src/CMakeFiles/B2bLib.dir/f2c/vmf1_ht.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/f2c/vmf1_ht.c.o -MF CMakeFiles/B2bLib.dir/f2c/vmf1_ht.c.o.d -o CMakeFiles/B2bLib.dir/f2c/vmf1_ht.c.o -c /home/user/RTKLIB-B2b/src/f2c/vmf1_ht.c
 
 src/CMakeFiles/B2bLib.dir/f2c/vmf1_ht.c.i: cmake_force
@@ -968,7 +982,7 @@ src/CMakeFiles/B2bLib.dir/f2c/vmf1_ht.c.s: cmake_force
 src/CMakeFiles/B2bLib.dir/f2c/zero_vec8.c.o: src/CMakeFiles/B2bLib.dir/flags.make
 src/CMakeFiles/B2bLib.dir/f2c/zero_vec8.c.o: /home/user/RTKLIB-B2b/src/f2c/zero_vec8.c
 src/CMakeFiles/B2bLib.dir/f2c/zero_vec8.c.o: src/CMakeFiles/B2bLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building C object src/CMakeFiles/B2bLib.dir/f2c/zero_vec8.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building C object src/CMakeFiles/B2bLib.dir/f2c/zero_vec8.c.o"
 	cd /home/user/RTKLIB-B2b/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/B2bLib.dir/f2c/zero_vec8.c.o -MF CMakeFiles/B2bLib.dir/f2c/zero_vec8.c.o.d -o CMakeFiles/B2bLib.dir/f2c/zero_vec8.c.o -c /home/user/RTKLIB-B2b/src/f2c/zero_vec8.c
 
 src/CMakeFiles/B2bLib.dir/f2c/zero_vec8.c.i: cmake_force
@@ -998,6 +1012,7 @@ B2bLib_OBJECTS = \
 "CMakeFiles/B2bLib.dir/ppp.c.o" \
 "CMakeFiles/B2bLib.dir/ppp_ar.c.o" \
 "CMakeFiles/B2bLib.dir/ppp_ar_passbypass.c.o" \
+"CMakeFiles/B2bLib.dir/ppp_ar_integration.c.o" \
 "CMakeFiles/B2bLib.dir/preceph.c.o" \
 "CMakeFiles/B2bLib.dir/rcvraw.c.o" \
 "CMakeFiles/B2bLib.dir/rinex.c.o" \
@@ -1067,6 +1082,7 @@ B2bLib_EXTERNAL_OBJECTS =
 /home/user/RTKLIB-B2b/lib/libB2bLib.a: src/CMakeFiles/B2bLib.dir/ppp.c.o
 /home/user/RTKLIB-B2b/lib/libB2bLib.a: src/CMakeFiles/B2bLib.dir/ppp_ar.c.o
 /home/user/RTKLIB-B2b/lib/libB2bLib.a: src/CMakeFiles/B2bLib.dir/ppp_ar_passbypass.c.o
+/home/user/RTKLIB-B2b/lib/libB2bLib.a: src/CMakeFiles/B2bLib.dir/ppp_ar_integration.c.o
 /home/user/RTKLIB-B2b/lib/libB2bLib.a: src/CMakeFiles/B2bLib.dir/preceph.c.o
 /home/user/RTKLIB-B2b/lib/libB2bLib.a: src/CMakeFiles/B2bLib.dir/rcvraw.c.o
 /home/user/RTKLIB-B2b/lib/libB2bLib.a: src/CMakeFiles/B2bLib.dir/rinex.c.o
@@ -1117,7 +1133,7 @@ B2bLib_EXTERNAL_OBJECTS =
 /home/user/RTKLIB-B2b/lib/libB2bLib.a: src/CMakeFiles/B2bLib.dir/f2c/zero_vec8.c.o
 /home/user/RTKLIB-B2b/lib/libB2bLib.a: src/CMakeFiles/B2bLib.dir/build.make
 /home/user/RTKLIB-B2b/lib/libB2bLib.a: src/CMakeFiles/B2bLib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Linking C static library /home/user/RTKLIB-B2b/lib/libB2bLib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Linking C static library /home/user/RTKLIB-B2b/lib/libB2bLib.a"
 	cd /home/user/RTKLIB-B2b/build/src && $(CMAKE_COMMAND) -P CMakeFiles/B2bLib.dir/cmake_clean_target.cmake
 	cd /home/user/RTKLIB-B2b/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/B2bLib.dir/link.txt --verbose=$(VERBOSE)
 

@@ -1604,6 +1604,7 @@ src/CMakeFiles/B2bLib.dir/pntpos.c.o: /home/user/RTKLIB-B2b/src/pntpos.c \
 src/CMakeFiles/B2bLib.dir/postpos.c.o: /home/user/RTKLIB-B2b/src/postpos.c \
   /home/user/RTKLIB-B2b/include/B2b.h \
   /home/user/RTKLIB-B2b/include/rtklib.h \
+  /home/user/RTKLIB-B2b/src/ppp_ar_passbypass.h \
   /usr/include/alloca.h \
   /usr/include/ctype.h \
   /usr/include/endian.h \
@@ -1868,6 +1869,7 @@ src/CMakeFiles/B2bLib.dir/ppp_ar.c.o: /home/user/RTKLIB-B2b/src/ppp_ar.c \
 
 src/CMakeFiles/B2bLib.dir/ppp_ar_passbypass.c.o: /home/user/RTKLIB-B2b/src/ppp_ar_passbypass.c \
   /home/user/RTKLIB-B2b/include/rtklib.h \
+  /home/user/RTKLIB-B2b/src/ppp_ar_passbypass.h \
   /usr/include/alloca.h \
   /usr/include/ctype.h \
   /usr/include/endian.h \
@@ -4967,6 +4969,8 @@ src/CMakeFiles/B2bLib.dir/vt.c.o: /home/user/RTKLIB-B2b/src/vt.c \
 /home/user/RTKLIB-B2b/src/preceph.c:
 
 /home/user/RTKLIB-B2b/src/ppp_ar_passbypass.c:
+
+/home/user/RTKLIB-B2b/src/ppp_ar_passbypass.h:
 
 /home/user/RTKLIB-B2b/src/ppp.c:
 

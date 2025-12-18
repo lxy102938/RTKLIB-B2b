@@ -168,12 +168,12 @@ src/clean: src/CMakeFiles/B2bLib.dir/clean
 app/postppp/CMakeFiles/postppp.dir/all: src/CMakeFiles/B2bLib.dir/all
 	$(MAKE) $(MAKESILENT) -f app/postppp/CMakeFiles/postppp.dir/build.make app/postppp/CMakeFiles/postppp.dir/depend
 	$(MAKE) $(MAKESILENT) -f app/postppp/CMakeFiles/postppp.dir/build.make app/postppp/CMakeFiles/postppp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=69,70 "Built target postppp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=70,71 "Built target postppp"
 .PHONY : app/postppp/CMakeFiles/postppp.dir/all
 
 # Build rule for subdir invocation for target.
 app/postppp/CMakeFiles/postppp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/RTKLIB-B2b/build/CMakeFiles 68
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/RTKLIB-B2b/build/CMakeFiles 69
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 app/postppp/CMakeFiles/postppp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/RTKLIB-B2b/build/CMakeFiles 0
 .PHONY : app/postppp/CMakeFiles/postppp.dir/rule
@@ -194,12 +194,12 @@ app/postppp/CMakeFiles/postppp.dir/clean:
 app/rtppp/CMakeFiles/rtppp.dir/all: src/CMakeFiles/B2bLib.dir/all
 	$(MAKE) $(MAKESILENT) -f app/rtppp/CMakeFiles/rtppp.dir/build.make app/rtppp/CMakeFiles/rtppp.dir/depend
 	$(MAKE) $(MAKESILENT) -f app/rtppp/CMakeFiles/rtppp.dir/build.make app/rtppp/CMakeFiles/rtppp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=73,74 "Built target rtppp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=74,75 "Built target rtppp"
 .PHONY : app/rtppp/CMakeFiles/rtppp.dir/all
 
 # Build rule for subdir invocation for target.
 app/rtppp/CMakeFiles/rtppp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/RTKLIB-B2b/build/CMakeFiles 68
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/RTKLIB-B2b/build/CMakeFiles 69
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 app/rtppp/CMakeFiles/rtppp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/RTKLIB-B2b/build/CMakeFiles 0
 .PHONY : app/rtppp/CMakeFiles/rtppp.dir/rule
@@ -220,12 +220,12 @@ app/rtppp/CMakeFiles/rtppp.dir/clean:
 app/postdecoder/CMakeFiles/postdecoder.dir/all: src/CMakeFiles/B2bLib.dir/all
 	$(MAKE) $(MAKESILENT) -f app/postdecoder/CMakeFiles/postdecoder.dir/build.make app/postdecoder/CMakeFiles/postdecoder.dir/depend
 	$(MAKE) $(MAKESILENT) -f app/postdecoder/CMakeFiles/postdecoder.dir/build.make app/postdecoder/CMakeFiles/postdecoder.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=67,68 "Built target postdecoder"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=68,69 "Built target postdecoder"
 .PHONY : app/postdecoder/CMakeFiles/postdecoder.dir/all
 
 # Build rule for subdir invocation for target.
 app/postdecoder/CMakeFiles/postdecoder.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/RTKLIB-B2b/build/CMakeFiles 68
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/RTKLIB-B2b/build/CMakeFiles 69
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 app/postdecoder/CMakeFiles/postdecoder.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/RTKLIB-B2b/build/CMakeFiles 0
 .PHONY : app/postdecoder/CMakeFiles/postdecoder.dir/rule
@@ -246,12 +246,12 @@ app/postdecoder/CMakeFiles/postdecoder.dir/clean:
 app/rtdecoder/CMakeFiles/rtdecoder.dir/all: src/CMakeFiles/B2bLib.dir/all
 	$(MAKE) $(MAKESILENT) -f app/rtdecoder/CMakeFiles/rtdecoder.dir/build.make app/rtdecoder/CMakeFiles/rtdecoder.dir/depend
 	$(MAKE) $(MAKESILENT) -f app/rtdecoder/CMakeFiles/rtdecoder.dir/build.make app/rtdecoder/CMakeFiles/rtdecoder.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=71,72 "Built target rtdecoder"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=72,73 "Built target rtdecoder"
 .PHONY : app/rtdecoder/CMakeFiles/rtdecoder.dir/all
 
 # Build rule for subdir invocation for target.
 app/rtdecoder/CMakeFiles/rtdecoder.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/RTKLIB-B2b/build/CMakeFiles 68
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/RTKLIB-B2b/build/CMakeFiles 69
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 app/rtdecoder/CMakeFiles/rtdecoder.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/RTKLIB-B2b/build/CMakeFiles 0
 .PHONY : app/rtdecoder/CMakeFiles/rtdecoder.dir/rule
@@ -272,12 +272,12 @@ app/rtdecoder/CMakeFiles/rtdecoder.dir/clean:
 src/CMakeFiles/B2bLib.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/B2bLib.dir/build.make src/CMakeFiles/B2bLib.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/B2bLib.dir/build.make src/CMakeFiles/B2bLib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66 "Built target B2bLib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/user/RTKLIB-B2b/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67 "Built target B2bLib"
 .PHONY : src/CMakeFiles/B2bLib.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/B2bLib.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/RTKLIB-B2b/build/CMakeFiles 66
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/RTKLIB-B2b/build/CMakeFiles 67
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/B2bLib.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/RTKLIB-B2b/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/B2bLib.dir/rule

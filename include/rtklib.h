@@ -1490,6 +1490,11 @@ typedef struct {        /* processing options type */
     int B2b_format;
     char sationname[MAXANT]; /* rover station name：only for post_mode */
     int  sampling;      /* SP3 file sampling */
+    int  armode_pbp;    /* Pass-by-Pass AR mode (0:off,1:WL only,2:WL+NL,3:full AR with pseudo-obs) */
+    int  pbp_refsat;    /* reference satellite for Pass-by-Pass AR (0:auto select) */
+    double pbp_thresar_wl; /* Pass-by-Pass WL fixing threshold (cycles) */
+    double pbp_thresar_nl; /* Pass-by-Pass NL fixing threshold (cycles) */
+    double pbp_sigma_pseudo; /* Pass-by-Pass pseudo-observation sigma (m) */
 } prcopt_t;
 
 typedef struct {        /* solution options type */

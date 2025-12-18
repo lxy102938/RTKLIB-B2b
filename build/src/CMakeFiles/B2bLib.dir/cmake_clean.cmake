@@ -65,6 +65,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/B2bLib.dir/ppp.c.o.d"
   "CMakeFiles/B2bLib.dir/ppp_ar.c.o"
   "CMakeFiles/B2bLib.dir/ppp_ar.c.o.d"
+  "CMakeFiles/B2bLib.dir/ppp_ar_integration.c.o"
+  "CMakeFiles/B2bLib.dir/ppp_ar_integration.c.o.d"
   "CMakeFiles/B2bLib.dir/ppp_ar_passbypass.c.o"
   "CMakeFiles/B2bLib.dir/ppp_ar_passbypass.c.o.d"
   "CMakeFiles/B2bLib.dir/preceph.c.o"

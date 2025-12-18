@@ -46,6 +46,7 @@
 *-----------------------------------------------------------------------------*/
 #include "rtklib.h"
 #include "B2b.h"
+#include "ppp_ar_passbypass.h"
 
 #define MIN(x,y)    ((x)<(y)?(x):(y))
 #define SQRT(x)     ((x)<=0.0||(x)!=(x)?0.0:sqrt(x))
@@ -97,50 +98,11 @@ static FILE *fp_B2b=NULL;      /* B2b data file pointer */
 static int processed_days = 0; /* counter for processed days */
 static FILE *fp_URA=NULL;      /* B2b URA data file pointer */
 
-/* ambiguity resolution data structures for pass-by-pass AR ------------------*/
-#define MAXARC  200        /* max number of arcs per satellite */
-
-typedef struct {        /* ambiguity arc type */
-    gtime_t ts,te;     /* arc start/end time */
-    int sat;           /* satellite number */
-    int day;           /* day number (0=day1, 1=day2) */
-    double N_IF;       /* IF ambiguity (m) */
-    double var_IF;     /* IF ambiguity variance (m^2) */
-    double N_WL;       /* WL ambiguity (cycles) */
-    double var_WL;     /* WL ambiguity variance (cycles^2) */
-    int nobs;          /* number of observations */
-    int fixed_WL;      /* WL fix flag (0=float, 1=fixed) */
-    int fixed_NL;      /* NL fix flag (0=float, 1=fixed) */
-    double N_WL_fix;   /* fixed WL ambiguity (cycles) */
-    double N_NL_fix;   /* fixed NL ambiguity (cycles) */
-} ambarc_t;
-
-typedef struct {        /* satellite ambiguity arcs */
-    int n;             /* number of arcs */
-    ambarc_t arc[MAXARC]; /* arc data */
-} satamb_t;
-
-typedef struct {        /* double-difference ambiguity */
-    int sat1,sat2;     /* satellite pair */
-    int arc1,arc2;     /* arc indices for sat1, sat2 */
-    double DD_IF;      /* DD IF ambiguity (m) */
-    double DD_WL;      /* DD WL ambiguity (cycles) */
-    double DD_NL;      /* DD NL ambiguity (cycles) */
-    double var_DD_IF;  /* DD IF variance */
-    double var_DD_WL;  /* DD WL variance */
-    double var_DD_NL;  /* DD NL variance */
-    int fixed_WL;      /* WL fix flag */
-    int fixed_NL;      /* NL fix flag */
-    double DD_WL_fix;  /* fixed DD WL (integer cycles) */
-    double DD_NL_fix;  /* fixed DD NL (integer cycles) */
-    double DD_IF_fix;  /* fixed DD IF from WL&NL (m) */
-} ddamb_t;
-
-static satamb_t satamb[MAXSAT]; /* ambiguity arcs for all satellites */
-static int n_ddamb = 0;         /* number of DD ambiguities */
-static ddamb_t ddamb[MAXSAT*MAXSAT]; /* DD ambiguity data */
-static int refsat = 0;          /* reference satellite for DD */
-static int ar_mode = 0;         /* AR mode: 0=off, 1=WL, 2=WL+NL, 3=AR fixed */
+/* ambiguity resolution data - defined globally for AR module access ---------*/
+satamb_t satamb[MAXSAT] = {{0}}; /* ambiguity arcs for all satellites */
+int n_ddamb = 0;                 /* number of DD ambiguities */
+ddamb_t ddamb[MAXSAT*MAXSAT] = {{0}}; /* DD ambiguity data */
+int refsat = 0;                  /* reference satellite for DD */
 
 /* show message and check break ----------------------------------------------*/
 static int checkbrk(const char *format, ...)
