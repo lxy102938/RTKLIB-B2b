@@ -156,17 +156,40 @@ extern void print_arc_summary(void)
 
     printf("\n========== Ambiguity Arc Summary ==========\n");
 
-    /* First pass: count arcs per day to diagnose day assignment */
+    /* First pass: count arcs per day and analyze nobs */
+    int arcs_day0_under10 = 0, arcs_day1_under10 = 0;
+    int arcs_day0_over10 = 0, arcs_day1_over10 = 0;
+
     for (i = 0; i < MAXSAT; i++) {
         for (j = 0; j < satamb[i].n; j++) {
-            if (satamb[i].arc[j].day == 0) arcs_day0++;
-            else if (satamb[i].arc[j].day == 1) arcs_day1++;
+            if (satamb[i].arc[j].day == 0) {
+                arcs_day0++;
+                if (satamb[i].arc[j].nobs >= 10) arcs_day0_over10++;
+                else arcs_day0_under10++;
+            }
+            else if (satamb[i].arc[j].day == 1) {
+                arcs_day1++;
+                if (satamb[i].arc[j].nobs >= 10) arcs_day1_over10++;
+                else arcs_day1_under10++;
+            }
             else arcs_other++;
         }
     }
 
-    printf("Arc distribution: day0=%d, day1=%d, other=%d\n",
-           arcs_day0, arcs_day1, arcs_other);
+    printf("Arc distribution: day0=%d (>=10obs:%d, <10obs:%d), day1=%d (>=10obs:%d, <10obs:%d), other=%d\n",
+           arcs_day0, arcs_day0_over10, arcs_day0_under10,
+           arcs_day1, arcs_day1_over10, arcs_day1_under10,
+           arcs_other);
+
+    if (arcs_day0 == 0) {
+        printf("WARNING: No arcs for day 0! PPP may not have converged on first day.\n");
+    }
+    if (arcs_day1 == 0) {
+        printf("WARNING: No arcs for day 1! PPP may not have converged on second day.\n");
+    }
+    if (arcs_day1_over10 == 0 && arcs_day1 > 0) {
+        printf("WARNING: Day 1 has %d arcs but all have <10 observations. Lowering threshold might help.\n", arcs_day1);
+    }
 
     for (i = 0; i < MAXSAT; i++) {
         if (satamb[i].n == 0) continue;

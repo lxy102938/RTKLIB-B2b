@@ -772,10 +772,25 @@ static void procpos(FILE *fp, FILE *fptm, const prcopt_t *popt, const solopt_t *
         }
 
         /* Pass-by-Pass AR: collect ambiguities if enabled */
-        if (popt->armode_pbp > 0 && rtk->sol.stat == SOLQ_PPP) {
+        if (popt->armode_pbp > 0) {
             static int day_transition_reported = 0;
-            static int first_gps_doy = -1;  /* GPS day of year for first observation */
-            static int epoch_count = 0;     /* count epochs for debugging */
+            static int first_gps_doy = -1;
+            static int epoch_count = 0;
+            static int total_epochs = 0, ppp_converged_epochs = 0;
+            static int day0_total = 0, day0_ppp = 0;
+            static int day1_total = 0, day1_ppp = 0;
+
+            total_epochs++;
+            if (rtk->sol.stat == SOLQ_PPP) ppp_converged_epochs++;
+
+            /* Only collect if PPP has converged */
+            if (rtk->sol.stat != SOLQ_PPP) {
+                if (epoch_count % 100 == 0) {
+                    printf("SKIP [Epoch %d]: PPP not converged (stat=%d), skipping AR collection\n",
+                           epoch_count, rtk->sol.stat);
+                }
+                goto skip_ar_collection;
+            }
 
             /* Get current GPS day of year */
             double ep[6];
@@ -835,6 +850,15 @@ static void procpos(FILE *fp, FILE *fptm, const prcopt_t *popt, const solopt_t *
                 day_transition_reported = 1;
             }
 
+            /* Track by day */
+            if (current_day == 0) {
+                day0_total++;
+                day0_ppp++;
+            } else if (current_day == 1) {
+                day1_total++;
+                day1_ppp++;
+            }
+
             /* Collect ambiguities for current epoch (only first two days) */
             if (current_day <= 1) {
                 int n_collected = collect_ambiguities_epoch(rtk, obs_ptr, n, current_day);
@@ -849,10 +873,18 @@ static void procpos(FILE *fp, FILE *fptm, const prcopt_t *popt, const solopt_t *
                           current_day, current_gps_doy);
                     printf("AR: Day %d detected (DOY %d), stopping ambiguity collection\n",
                            current_day, current_gps_doy);
-                    printf("    Total epochs processed: %d\n", epoch_count);
+                    printf("    PPP convergence summary:\n");
+                    printf("    - Total epochs: %d, PPP converged: %d (%.1f%%)\n",
+                           total_epochs, ppp_converged_epochs,
+                           100.0 * ppp_converged_epochs / total_epochs);
+                    printf("    - Day 0: %d PPP epochs\n", day0_ppp);
+                    printf("    - Day 1: %d PPP epochs\n", day1_ppp);
                     day2_warning_shown = 1;
                 }
             }
+
+        skip_ar_collection:
+            ; /* empty statement for label */
         }
 
         if (mode==SOLMODE_SINGLE_DIR) {    /* forward or backward */
