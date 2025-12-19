@@ -213,6 +213,12 @@ extern int collect_ambiguities(const rtk_t *rtk, const obsd_t *obs, int n,
     gtime_t time;
     char satid[8];
     int count = 0;
+    static int call_count_day0 = 0, call_count_day1 = 0;
+    static int new_arcs_day0 = 0, new_arcs_day1 = 0;
+    int new_arcs_this_call = 0;
+
+    if (day == 0) call_count_day0++;
+    else if (day == 1) call_count_day1++;
 
     trace(3, "collect_ambiguities: n=%d day=%d\n", n, day);
 
@@ -282,6 +288,10 @@ extern int collect_ambiguities(const rtk_t *rtk, const obsd_t *obs, int n,
             satamb[sat - 1].arc[idx_arc].fixed_WL = 0;
             satamb[sat - 1].arc[idx_arc].fixed_NL = 0;
 
+            new_arcs_this_call++;
+            if (day == 0) new_arcs_day0++;
+            else if (day == 1) new_arcs_day1++;
+
             trace(3, "New arc created for %s day %d: N_IF=%.3f N_WL=%.3f\n",
                   satid, day, N_IF, N_WL);
         } else {
@@ -299,6 +309,16 @@ extern int collect_ambiguities(const rtk_t *rtk, const obsd_t *obs, int n,
     }
 
     trace(3, "collect_ambiguities: collected %d ambiguities\n", count);
+
+    /* Print summary every 500 calls */
+    static int total_calls = 0;
+    total_calls++;
+    if (total_calls % 500 == 0 || new_arcs_this_call > 0) {
+        printf("AR COLLECT [Call %d]: day=%d, collected=%d, new_arcs=%d | Total: day0_calls=%d day1_calls=%d day0_arcs=%d day1_arcs=%d\n",
+               total_calls, day, count, new_arcs_this_call,
+               call_count_day0, call_count_day1, new_arcs_day0, new_arcs_day1);
+    }
+
     return count;
 }
 
